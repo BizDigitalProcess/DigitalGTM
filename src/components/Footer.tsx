@@ -14,6 +14,32 @@ const Footer = () => {
             <p className="mt-4 text-gray-300">
               Профессиональная автоматизация бизнес-процессов и GTM инженерия
             </p>
+            <div className="mt-4 flex flex-col space-y-2">
+              <a 
+                href="https://t.me/gleb_IT_bussines" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-tech-purple transition-colors inline-flex items-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21.73 2.27a1 1 0 0 0-1.19-.4L2.5 7.92a1 1 0 0 0 .19 1.91l7.36 2.37 2.37 7.36a1 1 0 0 0 1.91.19l6.06-18.05a1 1 0 0 0-.4-1.19z"></path>
+                  <path d="M8.33 12.4 15 8.67"></path>
+                </svg>
+                Мой Telegram канал
+              </a>
+              <a 
+                href="https://t.me/Asya_CryF1shHelper_bot" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-tech-purple transition-colors inline-flex items-center gap-2"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21.73 2.27a1 1 0 0 0-1.19-.4L2.5 7.92a1 1 0 0 0 .19 1.91l7.36 2.37 2.37 7.36a1 1 0 0 0 1.91.19l6.06-18.05a1 1 0 0 0-.4-1.19z"></path>
+                  <path d="M8.33 12.4 15 8.67"></path>
+                </svg>
+                Чат-бот для записи на услуги
+              </a>
+            </div>
           </div>
           
           {/* Quick Links */}

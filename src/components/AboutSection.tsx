@@ -3,7 +3,7 @@ import { CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const skills = [
-  "Python, JavaScript, TypeScript",
+  "N8N, .NET, Python, 1C",
   "API интеграции (REST, GraphQL)",
   "Автоматизация GTM и систем аналитики",
   "Разработка чат-ботов и AI ассистентов",
@@ -20,7 +20,7 @@ const AboutSection = () => {
           <div className="w-full lg:w-1/2 relative">
             <div className="rounded-lg overflow-hidden shadow-lg">
               <img 
-                src="/placeholder.svg" 
+                src="/lovable-uploads/03a35695-ef86-4301-b561-62513f166123.png" 
                 alt="GTM и автоматизация специалист" 
                 className="w-full h-auto"
               />
