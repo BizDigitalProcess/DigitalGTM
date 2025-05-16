@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,15 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				tech: {
+					purple: '#9b87f5',
+					'dark-purple': '#7E69AB',
+					orange: '#F97316',
+					gray: '#8E9196',
+					'light-gray': '#F1F0FB',
+					'dark-bg': '#1A1F2C',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +93,33 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'count-up': {
+					'0%': { content: '"0"' },
+					'20%': { content: '"20"' },
+					'40%': { content: '"40"' },
+					'60%': { content: '"60"' },
+					'80%': { content: '"80"' },
+					'100%': { content: '"99"' }
+				},
+				'fade-in-up': {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'pulse-light': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'count-up': 'count-up 2s forwards',
+				'fade-in-up': 'fade-in-up 0.6s ease-out',
+				'pulse-light': 'pulse-light 2s ease-in-out infinite'
+			},
+			fontFamily: {
+				inter: ['Inter', 'sans-serif'],
 			}
 		}
 	},
