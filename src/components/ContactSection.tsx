@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 const ContactSection = () => {
-  // Telegram URLs - you will need to replace these with your actual Telegram channel and bot URLs
-  const telegramChannelUrl = "https://t.me/your_channel";
-  const telegramBotUrl = "https://t.me/your_chatbot_username";
+  // Telegram URLs with the actual links
+  const telegramChannelUrl = "https://t.me/gleb_IT_bussines";
+  const telegramBotUrl = "https://t.me/Asya_CryF1shHelper_bot";
   
   const handleTelegramChannelClick = () => {
     window.open(telegramChannelUrl, '_blank');
@@ -33,12 +33,15 @@ const ContactSection = () => {
             <CardContent className="p-0">
               <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <h3 className="text-xl font-bold mb-2">Telegram Канал</h3>
-                  <p className="text-foreground/70 mb-6">
+                  <div className="w-16 h-16 bg-tech-purple/20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                    <MessageCircle className="w-8 h-8 text-tech-purple" />
+                  </div>
+                  <h3 className="text-xl font-bold text-center mb-2">Telegram Канал</h3>
+                  <p className="text-foreground/70 text-center mb-6">
                     Подпишитесь на мой канал, чтобы получать полезные материалы по автоматизации бизнес-процессов
                   </p>
                   <Button 
-                    className="btn-primary flex items-center gap-2 w-full md:w-auto"
+                    className="btn-primary flex items-center gap-2 w-full"
                     onClick={handleTelegramChannelClick}
                   >
                     Подписаться на канал
