@@ -18,7 +18,7 @@ const AboutSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left side - Image */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="rounded-lg overflow-hidden shadow-lg">
+            <div className="rounded-full overflow-hidden shadow-lg">
               <img 
                 src="/lovable-uploads/03a35695-ef86-4301-b561-62513f166123.png" 
                 alt="GTM и автоматизация специалист" 

@@ -67,7 +67,7 @@ const HeroSection = () => {
               
               {/* Floating badge */}
               <div className="absolute -top-4 -right-4 bg-tech-orange text-white py-2 px-4 rounded-lg shadow-lg">
-                <p className="font-semibold">Остался 1 слот для аудита</p>
+                <p className="font-semibold">Успей записаться на консультацию</p>
               </div>
             </div>
           </div>
