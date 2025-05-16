@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 interface MetricProps {
@@ -100,7 +99,7 @@ const MetricsSection = () => {
             />
             <Metric 
               label="Срок окупаемости" 
-              before="6 мес" 
+              before="3 мес" 
               after="2 нед" 
               delay={800}
             />

@@ -29,7 +29,6 @@ const Navbar = () => {
     { name: "Услуги", path: "/services" },
     { name: "Портфолио", path: "/portfolio" },
     { name: "Блог", path: "/blog" },
-    { name: "Контакты", path: "/contact" }
   ];
 
   return (
@@ -42,7 +41,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <Link to="/" className="font-bold text-2xl">
-              <span className="gradient-text">AI Vision</span>
+              <span className="gradient-text">Digital Process</span>
             </Link>
           </div>
           
@@ -59,8 +58,13 @@ const Navbar = () => {
             ))}
           </nav>
           
-          <div className="hidden md:block">
-            <Button className="btn-primary">Получить консультацию</Button>
+          <div className="hidden md:flex space-x-4">
+            <Button 
+              className="btn-primary"
+              onClick={() => window.open('https://t.me/your_chatbot_username', '_blank')}
+            >
+              Получить консультацию
+            </Button>
           </div>
           
           {/* Mobile menu button */}
@@ -86,7 +90,13 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className="btn-primary w-full mt-4" onClick={() => setIsOpen(false)}>
+            <Button 
+              className="btn-primary w-full mt-4"
+              onClick={() => {
+                window.open('https://t.me/your_chatbot_username', '_blank');
+                setIsOpen(false);
+              }}
+            >
               Получить консультацию
             </Button>
           </nav>
