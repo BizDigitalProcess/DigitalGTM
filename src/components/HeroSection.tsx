@@ -1,6 +1,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AnimatedBanner from "./AnimatedBanner";
 
 const HeroSection = () => {
   return (
@@ -56,19 +57,13 @@ const HeroSection = () => {
             </div>
           </div>
           
-          {/* Right side - Image/Illustration */}
+          {/* Right side - Animated Banner */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="rounded-lg overflow-hidden shadow-2xl">
-              <img 
-                src="/placeholder.svg" 
-                alt="Автоматизация бизнес-процессов" 
-                className="w-full h-auto object-cover transform transition-transform hover:scale-105 duration-500"
-              />
-              
-              {/* Floating badge */}
-              <div className="absolute -top-4 -right-4 bg-tech-orange text-white py-2 px-4 rounded-lg shadow-lg">
-                <p className="font-semibold">Успей записаться на консультацию</p>
-              </div>
+            <AnimatedBanner />
+            
+            {/* Floating badge */}
+            <div className="absolute -top-4 -right-4 bg-tech-orange text-white py-2 px-4 rounded-lg shadow-lg">
+              <p className="font-semibold">Успей записаться на консультацию</p>
             </div>
           </div>
         </div>

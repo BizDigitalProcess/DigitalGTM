@@ -27,8 +27,8 @@ const Navbar = () => {
     { name: "Главная", path: "/" },
     { name: "Обо мне", path: "/about" },
     { name: "Услуги", path: "/services" },
-    { name: "Портфолио", path: "/portfolio" },
-    { name: "Блог", path: "/blog" },
+    { name: "Портфолио", path: "/portfolio", disabled: true },
+    { name: "Блог", path: "https://t.me/DigitalGTM", external: true },
   ];
 
   return (
@@ -48,13 +48,30 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link 
-                key={item.name} 
-                to={item.path} 
-                className="text-foreground/80 hover:text-tech-purple transition-colors duration-200"
-              >
-                {item.name}
-              </Link>
+              item.external ? (
+                <a 
+                  key={item.name}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground/80 hover:text-tech-purple transition-colors duration-200"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link 
+                  key={item.name} 
+                  to={item.path}
+                  className={`text-foreground/80 transition-colors duration-200 ${
+                    item.disabled 
+                      ? 'opacity-50 cursor-not-allowed' 
+                      : 'hover:text-tech-purple'
+                  }`}
+                  onClick={e => item.disabled && e.preventDefault()}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </nav>
           
@@ -81,14 +98,37 @@ const Navbar = () => {
         <div className="md:hidden bg-background/95 backdrop-blur-md py-4 px-4 shadow-lg">
           <nav className="flex flex-col space-y-4">
             {navItems.map((item) => (
-              <Link 
-                key={item.name} 
-                to={item.path} 
-                className="text-foreground/80 hover:text-tech-purple transition-colors duration-200 py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
+              item.external ? (
+                <a 
+                  key={item.name}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground/80 hover:text-tech-purple transition-colors duration-200 py-2"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link 
+                  key={item.name} 
+                  to={item.path} 
+                  className={`text-foreground/80 transition-colors duration-200 py-2 ${
+                    item.disabled 
+                      ? 'opacity-50 cursor-not-allowed' 
+                      : 'hover:text-tech-purple'
+                  }`}
+                  onClick={(e) => {
+                    if (item.disabled) {
+                      e.preventDefault();
+                    } else {
+                      setIsOpen(false);
+                    }
+                  }}
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
             <Button 
               className="btn-primary w-full mt-4"

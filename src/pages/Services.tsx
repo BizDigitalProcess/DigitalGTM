@@ -2,6 +2,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ServicesSection from '@/components/ServicesSection';
+import { Button } from "@/components/ui/button";
 
 const Services = () => {
   return (

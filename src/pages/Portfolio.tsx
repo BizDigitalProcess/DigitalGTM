@@ -2,6 +2,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PortfolioSection from '@/components/PortfolioSection';
+import { Button } from "@/components/ui/button";
 
 const Portfolio = () => {
   return (
