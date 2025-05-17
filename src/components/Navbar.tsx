@@ -27,7 +27,7 @@ const Navbar = () => {
     { name: "Главная", path: "/" },
     { name: "Обо мне", path: "/about" },
     { name: "Услуги", path: "/services" },
-    { name: "Портфолио", path: "/portfolio", disabled: true },
+    { name: "Портфолио", path: "/portfolio" },
     { name: "Блог", path: "https://t.me/DigitalGTM", external: true },
   ];
 
@@ -62,12 +62,7 @@ const Navbar = () => {
                 <Link 
                   key={item.name} 
                   to={item.path}
-                  className={`text-foreground/80 transition-colors duration-200 ${
-                    item.disabled 
-                      ? 'opacity-50 cursor-not-allowed' 
-                      : 'hover:text-tech-purple'
-                  }`}
-                  onClick={e => item.disabled && e.preventDefault()}
+                  className="text-foreground/80 hover:text-tech-purple transition-colors duration-200"
                 >
                   {item.name}
                 </Link>
@@ -113,18 +108,8 @@ const Navbar = () => {
                 <Link 
                   key={item.name} 
                   to={item.path} 
-                  className={`text-foreground/80 transition-colors duration-200 py-2 ${
-                    item.disabled 
-                      ? 'opacity-50 cursor-not-allowed' 
-                      : 'hover:text-tech-purple'
-                  }`}
-                  onClick={(e) => {
-                    if (item.disabled) {
-                      e.preventDefault();
-                    } else {
-                      setIsOpen(false);
-                    }
-                  }}
+                  className="text-foreground/80 hover:text-tech-purple transition-colors duration-200 py-2"
+                  onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>

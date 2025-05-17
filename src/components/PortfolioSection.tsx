@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
+import { Link } from "react-router-dom";
 
 const cases = [
   {
@@ -143,9 +144,11 @@ const PortfolioSection = () => {
         </div>
         
         <div className="text-center">
-          <Button className="btn-primary flex items-center gap-2 group">
-            Смотреть все проекты
-            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          <Button className="btn-primary flex items-center gap-2 group" asChild>
+            <Link to="/portfolio">
+              Смотреть все проекты
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+            </Link>
           </Button>
         </div>
       </div>

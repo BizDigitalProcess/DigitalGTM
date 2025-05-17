@@ -11,18 +11,18 @@ const AnimatedBanner = () => {
     const timeline = [
       {
         time: 0,
-        show: 'stage1',
-        hide: ['stage2', 'stage3']
+        show: 'stage-1',
+        hide: ['stage-2', 'stage-3']
       },
       {
         time: 1000,
-        show: 'stage2',
-        hide: ['stage1', 'stage3']
+        show: 'stage-2',
+        hide: ['stage-1', 'stage-3']
       },
       {
         time: 3000,
-        show: 'stage3',
-        hide: ['stage1', 'stage2']
+        show: 'stage-3',
+        hide: ['stage-1', 'stage-2']
       }
     ];
 
@@ -53,7 +53,7 @@ const AnimatedBanner = () => {
       if (showElement) showElement.classList.add('active');
       
       // Special effects
-      if (current.show === 'stage1') {
+      if (current.show === 'stage-1') {
         const percentage = showElement?.querySelector('.percentage');
         if (percentage) {
           percentage.classList.add('tremor');
@@ -202,6 +202,49 @@ const AnimatedBanner = () => {
           </div>
         </div>
       </div>
+      
+      <style jsx>{`
+        .stage-1, .stage-2, .stage-3 {
+          opacity: 0;
+          transition: opacity 0.7s ease-in-out;
+        }
+        
+        .stage-1.active, .stage-2.active, .stage-3.active {
+          opacity: 1;
+        }
+        
+        .percentage.tremor {
+          animation: tremble 0.8s ease-in-out;
+        }
+        
+        @keyframes tremble {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-1px); }
+          20%, 40%, 60%, 80% { transform: translateX(1px); }
+        }
+        
+        @keyframes drawPath {
+          to { stroke-dashoffset: 0; }
+        }
+        
+        .animate-drawPath {
+          stroke-dasharray: 300;
+          stroke-dashoffset: 300;
+          animation: drawPath 2s forwards;
+        }
+        
+        .animate-spin-slow {
+          animation: spin 8s linear infinite;
+        }
+        
+        .animate-spin-slow-reverse {
+          animation: spin 8s linear infinite reverse;
+        }
+        
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 };

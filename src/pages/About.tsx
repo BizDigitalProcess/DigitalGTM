@@ -19,7 +19,7 @@ const About = () => {
               
               <div className="prose prose-lg dark:prose-invert">
                 <p>
-                  Более 7 лет я помогаю бизнесам разного масштаба оптимизировать их процессы и внедрять современные технологические решения. Моя специализация — создание систем, которые не просто работают, а приносят измеримый результат.
+                  Более 8 лет я помогаю бизнесам разного масштаба оптимизировать их процессы и внедрять современные технологические решения. Моя специализация — создание систем, которые не просто работают, а приносят измеримый результат.
                 </p>
                 
                 <p>
@@ -29,6 +29,53 @@ const About = () => {
                 <p>
                   За свою карьеру я реализовал более 100 проектов в различных отраслях: от малого бизнеса до крупных корпораций. Каждый проект — это новый вызов и возможность создать что-то по-настоящему ценное для клиента.
                 </p>
+                
+                <h3 className="text-xl font-semibold mb-4 mt-8">Профессиональный опыт</h3>
+                
+                <div className="space-y-6">
+                  <div className="border-l-4 border-tech-purple pl-4">
+                    <h4 className="font-semibold">IT Business Automation | .NET Backend Developer | SaaS & API Integrations</h4>
+                    <p className="text-sm text-foreground/70">Февраль 2025 - настоящее время</p>
+                    <p>Freelance. Создание умных IT-решений для масштабирования бизнеса и автоматизации процессов.</p>
+                  </div>
+                  
+                  <div className="border-l-4 border-tech-purple pl-4">
+                    <h4 className="font-semibold">IT Business Developer в CopySpace</h4>
+                    <p className="text-sm text-foreground/70">Декабрь 2024 - Март 2025</p>
+                    <p>Развитие IT-отдела, форматирование отдела продаж, автоматизация процессов, оптимизация продаж и интеграция CRM.</p>
+                  </div>
+                  
+                  <div className="border-l-4 border-tech-purple pl-4">
+                    <h4 className="font-semibold">.NET Developer в FoxLab</h4>
+                    <p className="text-sm text-foreground/70">Июнь 2024 - настоящее время</p>
+                    <p>Разработка масштабируемых решений для B2B и B2C клиентов.</p>
+                  </div>
+                  
+                  <div className="border-l-4 border-tech-purple pl-4">
+                    <h4 className="font-semibold">Junior .NET Developer</h4>
+                    <p className="text-sm text-foreground/70">Ноябрь 2023 - Июнь 2024</p>
+                    <p>Работа над проектами с использованием .NET, ASP.NET MVC и PostgreSQL.</p>
+                  </div>
+                  
+                  <div className="border-l-4 border-tech-purple pl-4">
+                    <h4 className="font-semibold">Стажировки</h4>
+                    <p className="text-sm text-foreground/70">Ранее</p>
+                    <p>2 стажировки в Maxim technology & Гос. Оборон. Промышленном предприятии</p>
+                  </div>
+                </div>
+                
+                <h3 className="text-xl font-semibold mb-4 mt-8">Образование</h3>
+                <div className="border-l-4 border-tech-purple pl-4">
+                  <h4 className="font-semibold">Специалист информационных систем, ВПМТ</h4>
+                  <p className="text-sm text-foreground/70">Сентябрь 2020 - Июнь 2024</p>
+                  <p>Диплом с отличием</p>
+                </div>
+                
+                <div className="mt-8 text-center">
+                  <Button className="btn-primary" onClick={() => window.open('/resume.pdf', '_blank')}>
+                    Скачать резюме
+                  </Button>
+                </div>
                 
                 <h3 className="text-xl font-semibold mb-4 mt-8">Мой подход</h3>
                 

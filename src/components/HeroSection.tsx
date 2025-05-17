@@ -2,6 +2,7 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnimatedBanner from "./AnimatedBanner";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -24,15 +25,18 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Button className="btn-primary text-lg flex items-center gap-2 group">
+              <Button 
+                className="btn-primary text-lg flex items-center gap-2 group" 
+                onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}
+              >
                 Получить бесплатный аудит 
                 <ArrowRight 
                   size={18} 
                   className="transition-transform group-hover:translate-x-1" 
                 />
               </Button>
-              <Button variant="outline" className="text-lg border-tech-purple text-tech-purple hover:bg-tech-purple/10">
-                Смотреть портфолио
+              <Button variant="outline" className="text-lg border-tech-purple text-tech-purple hover:bg-tech-purple/10" asChild>
+                <Link to="/portfolio">Смотреть портфолио</Link>
               </Button>
             </div>
             
