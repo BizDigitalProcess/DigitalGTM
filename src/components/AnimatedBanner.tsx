@@ -203,7 +203,8 @@ const AnimatedBanner = () => {
         </div>
       </div>
       
-      <style jsx>{`
+      <style>
+        {`
         .stage-1, .stage-2, .stage-3 {
           opacity: 0;
           transition: opacity 0.7s ease-in-out;
@@ -244,7 +245,8 @@ const AnimatedBanner = () => {
         @keyframes spin {
           to { transform: rotate(360deg); }
         }
-      `}</style>
+        `}
+      </style>
     </div>
   );
 };
