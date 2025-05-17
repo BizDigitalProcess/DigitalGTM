@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Telegram, MessageCircle, Mail, Calendar } from "lucide-react";
+import { MessageSquare, Send, Mail, Calendar } from "lucide-react";
 
 const ContactSection = () => {
   return (
@@ -18,7 +18,7 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="tech-card p-6 text-center flex flex-col items-center hover:-translate-y-1 transition-all duration-300">
             <div className="bg-tech-purple/10 rounded-full p-4 mb-4">
-              <MessageCircle className="w-8 h-8 text-tech-purple" />
+              <MessageSquare className="w-8 h-8 text-tech-purple" />
             </div>
             <h3 className="text-xl font-semibold mb-2">AI Ассистент</h3>
             <p className="text-foreground/70 mb-4">
@@ -33,7 +33,7 @@ const ContactSection = () => {
           
           <div className="tech-card p-6 text-center flex flex-col items-center hover:-translate-y-1 transition-all duration-300">
             <div className="bg-tech-purple/10 rounded-full p-4 mb-4">
-              <Telegram className="w-8 h-8 text-tech-purple" />
+              <Send className="w-8 h-8 text-tech-purple" />
             </div>
             <h3 className="text-xl font-semibold mb-2">Telegram канал</h3>
             <p className="text-foreground/70 mb-4">
