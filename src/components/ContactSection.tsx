@@ -1,5 +1,5 @@
 
-import { ExternalLink, MessageCircle } from "lucide-react";
+import { ExternalLink, Send, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -34,7 +34,7 @@ const ContactSection = () => {
               <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="p-6 md:p-8 flex flex-col justify-center">
                   <div className="w-16 h-16 bg-tech-purple/20 rounded-full flex items-center justify-center mb-4 mx-auto">
-                    <MessageCircle className="w-8 h-8 text-tech-purple" />
+                    <Send className="w-8 h-8 text-tech-purple" />
                   </div>
                   <h3 className="text-xl font-bold text-center mb-2">Telegram Канал</h3>
                   <p className="text-foreground/70 text-center mb-6">

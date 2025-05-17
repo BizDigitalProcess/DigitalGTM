@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <Link to="/" className="font-bold text-2xl">
-              <span className="gradient-text">Digital Process</span>
+              <span className="gradient-text">DigitalGTM</span>
             </Link>
           </div>
           
@@ -61,7 +61,7 @@ const Navbar = () => {
           <div className="hidden md:flex space-x-4">
             <Button 
               className="btn-primary"
-              onClick={() => window.open('https://t.me/your_chatbot_username', '_blank')}
+              onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}
             >
               Получить консультацию
             </Button>
@@ -93,7 +93,7 @@ const Navbar = () => {
             <Button 
               className="btn-primary w-full mt-4"
               onClick={() => {
-                window.open('https://t.me/your_chatbot_username', '_blank');
+                window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank');
                 setIsOpen(false);
               }}
             >
