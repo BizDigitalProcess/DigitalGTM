@@ -1,10 +1,292 @@
 
+import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ServicesSection from '@/components/ServicesSection';
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+const ServicePlan = ({ plan, isPopular, openDetails }) => {
+  return (
+    <div className={`tech-card p-6 flex flex-col h-full relative ${isPopular ? 'border-tech-purple' : ''}`}>
+      {isPopular && (
+        <div className="absolute -top-4 right-4 bg-tech-purple text-white px-4 py-1 rounded-full text-sm font-medium">
+          Популярный
+        </div>
+      )}
+      
+      <div className="mb-4 text-center">
+        <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
+        <div className="text-3xl font-bold text-tech-purple">{plan.price}</div>
+        <p className="text-sm text-foreground/60 mt-1">{plan.subtitle}</p>
+      </div>
+      
+      <ul className="mt-4 mb-6 space-y-3 flex-grow">
+        {plan.features.map((feature, idx) => (
+          <li key={idx} className="flex items-start gap-2">
+            <span className="text-tech-purple font-bold">✓</span>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+      
+      <div className="mt-auto space-y-3">
+        <Button className="btn-primary w-full" onClick={() => openDetails(plan)}>
+          Подробнее
+        </Button>
+        <Button variant="outline" className="w-full border-tech-purple text-tech-purple hover:bg-tech-purple/10">
+          Записаться на консультацию
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 const Services = () => {
+  const [activeTab, setActiveTab] = useState("software");
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  
+  const openPlanDetails = (plan) => {
+    setSelectedPlan(plan);
+    setDialogOpen(true);
+  };
+  
+  const servicePlans = {
+    software: [
+      {
+        name: "Базовый",
+        price: "от 35 000 ₽",
+        subtitle: "Эффективный старт",
+        features: [
+          "Автоматизация одного бизнес-процесса",
+          "Настройка базового программного решения",
+          "Минимальная интеграция с одним сервисом",
+          "Базовая документация по использованию",
+          "Техническая поддержка на запуск",
+          "БОНУС: Бесплатная консультация по оптимизации выбранного процесса"
+        ],
+        details: "Тариф 'Эффективный старт' идеально подходит для компаний, которые только начинают свой путь автоматизации. Вы получаете полноценное решение для одного критически важного бизнес-процесса, что позволит оценить эффективность автоматизации и принять решение о дальнейшем развитии в этом направлении."
+      },
+      {
+        name: "Стандарт",
+        price: "от 75 000 ₽",
+        subtitle: "Быстрые результаты",
+        features: [
+          "Аудит ключевых бизнес-процессов для автоматизации",
+          "Разработка решения с настройкой под потребности бизнеса",
+          "Интеграция с основными системами (до 3 сервисов)",
+          "Базовое обучение персонала работе с системой",
+          "Техническая поддержка в рабочее время",
+          "БОНУС: Бесплатное составление базового ТЗ (экономия 5 000 руб.)",
+          "БОНУС: 1 месяц технической поддержки в подарок"
+        ],
+        details: "Тариф 'Быстрые результаты' создан для бизнесов, готовых к комплексной автоматизации нескольких взаимосвязанных процессов. Мы проведем аудит ваших процессов, выявим узкие места и предложим оптимальное решение, которое интегрируется с вашими текущими системами и значительно повысит эффективность работы."
+      },
+      {
+        name: "Премиум",
+        price: "от 150 000 ₽",
+        subtitle: "Бизнес под ключ",
+        features: [
+          "Комплексный аудит бизнес-процессов компании",
+          "Разработка индивидуальной стратегии автоматизации",
+          "Создание кастомного программного решения с уникальным функционалом",
+          "Интеграция со всеми используемыми системами и сервисами",
+          "Обучение персонала и документация по использованию",
+          "Техническая поддержка 24/7 с гарантированным временем реакции",
+          "Персональный проджект-менеджер и выделенная команда разработки",
+          "БОНУС: Бесплатное составление детального ТЗ (экономия 30 000 руб.)",
+          "БОНУС: 3 месяца технической поддержки в подарок"
+        ],
+        details: "Тариф 'Бизнес под ключ' - это полномасштабное решение для компаний, стремящихся к комплексной цифровой трансформации. Мы берем на себя полный цикл: от анализа и планирования до разработки, внедрения и поддержки уникальной экосистемы, адаптированной именно под ваш бизнес. Вы получаете индивидуальное решение с максимальной экономической эффективностью."
+      }
+    ],
+    chatbots: [
+      {
+        name: "Базовый",
+        price: "от 20 000 ₽",
+        subtitle: "Умный ассистент",
+        features: [
+          "Разработка базового чат-бота для Telegram",
+          "Интеграция с Google-календарем и Google-таблицами",
+          "Подключение 1-2 каналов коммуникации",
+          "Базовые сценарии автоматизации",
+          "Стоимость обслуживания: 2000 руб. за 2000 пользователей",
+          "БОНУС: Базовая настройка под ваш фирменный стиль"
+        ],
+        details: "Тариф 'Умный ассистент' - это отличное начало для автоматизации коммуникаций с клиентами. Вы получаете функциональный чат-бот, который может отвечать на типовые вопросы, собирать контактные данные и записывать клиентов, освобождая ваших сотрудников от рутинных задач."
+      },
+      {
+        name: "Стандарт",
+        price: "от 45 000 ₽",
+        subtitle: "Продвинутый помощник",
+        features: [
+          "Разработка чат-бота с базовыми AI-функциями",
+          "Интеграция с основными CRM-системами",
+          "Подключение до 3 каналов коммуникации на выбор",
+          "Базовая аналитика и отчетность",
+          "Автоматическое заполнение карточек клиентов",
+          "Стоимость обслуживания: 2000 руб. за каждых 2000 пользователей",
+          "БОНУС: Настройка наиболее частых сценариев взаимодействия"
+        ],
+        details: "Тариф 'Продвинутый помощник' предлагает более интеллектуальное решение с элементами искусственного интеллекта. Такой чат-бот может не только отвечать на вопросы, но и квалифицировать лиды, собирать информацию о клиентах и интегрироваться с вашей CRM-системой для автоматического создания сделок."
+      },
+      {
+        name: "Премиум",
+        price: "от 85 000 ₽",
+        subtitle: "AI-менеджер Pro",
+        features: [
+          "Разработка интеллектуального чат-бота с использованием передовых языковых моделей",
+          "Полная интеграция с CRM (Bitrix24, amoCRM, Kommo, Yclients, Altegio)",
+          "Подключение всех основных каналов: Telegram, WhatsApp, VK, сайт",
+          "Несколько AI-агентов (квалификатор + консультант)",
+          "Автоматизированное управление этапами сделки",
+          "Сегментация лидов и автоматическая квалификация",
+          "Стоимость обслуживания: 2000 руб. за каждых 2000 пользователей",
+          "БОНУС: Интеграция с Avito (экономия 2 999 руб.)",
+          "БОНУС: Кастомизация сценариев без дополнительной оплаты"
+        ],
+        details: "Тариф 'AI-менеджер Pro' - это комплексное решение с использованием передовых технологий искусственного интеллекта. Такой бот может полностью заменить менеджера на первичных этапах работы с клиентом: консультировать, квалифицировать, собирать данные, назначать встречи и даже вести клиента по воронке продаж, существенно повышая конверсию и снижая нагрузку на отдел продаж."
+      }
+    ],
+    gtm: [
+      {
+        name: "Базовый",
+        price: "от 30 000 ₽",
+        subtitle: "Первый шаг",
+        features: [
+          "Консультация по GTM стратегии",
+          "Разработка плана действий",
+          "Настройка 1-2 каналов лидогенерации",
+          "БОНУС: Аудит текущих маркетинговых активностей"
+        ],
+        details: "Тариф 'Первый шаг' создан для бизнесов, которые только начинают выстраивать свою маркетинговую стратегию. Вы получите четкое понимание, какие каналы будут наиболее эффективны именно для вашего бизнеса, и базовую настройку 1-2 наиболее перспективных источников трафика."
+      },
+      {
+        name: "Стандарт",
+        price: "от 60 000 ₽",
+        subtitle: "Быстрый старт",
+        features: [
+          "Разработка базовой GTM стратегии",
+          "Настройка Яндекс директ по тарифу Mini+Ретаргетинг+РСЯ+таргетинг",
+          "Настройка GA на лендинг",
+          "Создание воронки продаж",
+          "Базовая аналитика с ежемесячными отчетами",
+          "БОНУС: Настройка чата или виджета обратного звонка"
+        ],
+        details: "Тариф 'Быстрый старт' предлагает комплексное решение для бизнесов, стремящихся быстро наладить поток лидов. Вы получите настроенную рекламную кампанию, аналитику для отслеживания результативности и базовую воронку продаж, что позволит систематизировать работу с клиентами и отслеживать эффективность маркетинговых инвестиций."
+      },
+      {
+        name: "Премиум",
+        price: "от 120 000 ₽",
+        subtitle: "Полный запуск",
+        features: [
+          "Разработка комплексной GTM стратегии с аналитикой рынка",
+          "Настройка системы лидогенерации под ключ",
+          "Автоматизация маркетинговых процессов",
+          "Настройка расширенной аналитики и отчетности",
+          "Создание и оптимизация воронки продаж",
+          "Персональное курирование запуска проекта",
+          "БОНУС: Разработка скриптов продаж и обучение персонала",
+          "БОНУС: Лендинг по ведущим товарам\\услугам"
+        ],
+        details: "Тариф 'Полный запуск' - это максимально комплексный подход к выводу продукта на рынок. Вы получаете не только настроенные каналы привлечения, но и полностью выстроенную систему работы с лидами: от первого касания до закрытия сделки. Это решение для компаний, нацеленных на быстрый рост и масштабирование продаж."
+      }
+    ],
+    outstaffing: [
+      {
+        name: "Базовый",
+        price: "от 80 000 ₽/мес.",
+        subtitle: "Твой по запросу",
+        features: [
+          "40 часов работы в месяц",
+          "Ежемесячный отчет о выполненных задачах",
+          "БОНУС: Консультации по оптимизации текущих процессов"
+        ],
+        details: "Тариф 'Твой по запросу' идеально подходит для компаний с периодическими задачами по автоматизации и техническому развитию. Вы получаете доступ к квалифицированному IT-специалисту на 40 часов в месяц, что позволяет решать текущие задачи без необходимости найма штатного сотрудника."
+      },
+      {
+        name: "Стандарт",
+        price: "от 150 000 ₽/мес.",
+        subtitle: "На половину твой",
+        features: [
+          "80 часов работы в месяц (частичная занятость)",
+          "Еженедельные отчеты и планирование задач",
+          "БОНУС: Доступ к базе знаний по внедренным решениям"
+        ],
+        details: "Тариф 'На половину твой' предлагает более глубокое вовлечение специалиста в проекты компании. 80 часов в месяц позволяют реализовывать комплексные задачи по автоматизации, интеграции систем и техническому развитию бизнеса с постоянным контролем и еженедельной отчетностью."
+      },
+      {
+        name: "Премиум",
+        price: "от 300 000 ₽/мес.",
+        subtitle: "Я весь твой",
+        features: [
+          "160 часов работы в месяц (полная занятость)",
+          "Еженедельные отчеты о проделанной работе",
+          "Приоритетная техническая поддержка",
+          "БОНУС: Ежемесячный аудит и оптимизация процессов"
+        ],
+        details: "Тариф 'Я весь твой' - это полная занятость специалиста на проектах вашей компании. Такой формат позволяет реализовывать масштабные проекты цифровой трансформации, требующие постоянного внимания и глубокого погружения в бизнес-процессы компании. Вы получаете не просто исполнителя, а технического партнера, заинтересованного в успехе вашего бизнеса."
+      }
+    ],
+    additional: [
+      {
+        name: "Парсинг сайтов",
+        price: "от 4 500 ₽",
+        subtitle: "за сайт",
+        features: [
+          "1-10 сайтов: 4500 руб. за сайт",
+          "11-20 сайтов: 4000 руб. за сайт",
+          "21+ сайтов: 3500 руб. за сайт"
+        ],
+        details: "Услуга парсинга сайтов позволяет автоматически собирать данные с веб-ресурсов: цены конкурентов, каталоги товаров, контакты потенциальных клиентов и другую полезную информацию. Мы разрабатываем индивидуальные скрипты под ваши задачи, которые можно использовать как для разового сбора данных, так и для регулярного мониторинга."
+      },
+      {
+        name: "Установка и настройка готового софта",
+        price: "от 5 000 ₽",
+        subtitle: "в зависимости от сложности",
+        features: [
+          "Базовая установка: 5 000 руб.",
+          "Установка с настройкой: 10 000 руб.",
+          "Комплексная установка с интеграцией: 20 000 руб."
+        ],
+        details: "Услуга по установке и настройке готовых программных решений избавит вас от технических сложностей при внедрении нового ПО. Мы обеспечим корректную установку, базовую или расширенную настройку под ваши потребности, а также интеграцию с существующими системами, что позволит максимально быстро начать использование нового инструмента."
+      },
+      {
+        name: "Разработка ТЗ",
+        price: "от 5 000 ₽",
+        subtitle: "в зависимости от сложности",
+        features: [
+          "Базовое ТЗ: 5 000 руб.",
+          "Стандартное ТЗ: 15 000 руб.",
+          "Детальное ТЗ: 30 000 руб."
+        ],
+        details: "Разработка технического задания - критически важный этап любого IT-проекта. Мы поможем структурировать ваши требования и идеи в четкий документ, который станет фундаментом успешной реализации. В зависимости от сложности проекта, мы предлагаем различные уровни детализации ТЗ: от базового описания функционала до детальной спецификации с макетами и бизнес-логикой."
+      },
+      {
+        name: "Внедрение и настройка CRM",
+        price: "от 20 000 ₽",
+        subtitle: "в зависимости от сложности",
+        features: [
+          "Базовая настройка: 20 000 руб.",
+          "Стандартная настройка с интеграциями: 40 000 руб.",
+          "Комплексное внедрение: 80 000 руб."
+        ],
+        details: "Внедрение CRM-системы позволяет систематизировать работу с клиентами, повысить эффективность отдела продаж и получить полную аналитику бизнес-процессов. Мы предлагаем различные варианты внедрения: от базовой настройки существующей CRM до комплексного внедрения с автоматизацией бизнес-процессов, интеграцией с телефонией, сайтом и другими системами."
+      }
+    ]
+  };
+  
+  const tabsLabels = {
+    software: "Разработка ПО",
+    chatbots: "Разработка чат-ботов",
+    gtm: "GTM инженерия",
+    outstaffing: "Аутстафф",
+    additional: "Дополнительные услуги"
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -13,115 +295,35 @@ const Services = () => {
         
         <section className="py-16 md:py-24 bg-gradient-to-b from-tech-light-gray/30 to-white dark:from-tech-dark-bg/50 dark:to-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl font-bold mb-8 text-center">
                 <span className="gradient-text">Тарифы</span> и пакеты услуг
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="tech-card p-6 flex flex-col h-full">
-                  <div className="mb-4 text-center">
-                    <h3 className="text-xl font-bold mb-2">Базовый</h3>
-                    <div className="text-3xl font-bold text-tech-purple">от 50 000 ₽</div>
-                    <p className="text-sm text-foreground/60 mt-1">Разовый проект</p>
-                  </div>
-                  
-                  <ul className="mt-4 mb-6 space-y-3 flex-grow">
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Аудит текущих процессов</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Автоматизация 1 бизнес-процесса</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Базовая интеграция систем</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Обучение персонала</span>
-                    </li>
-                  </ul>
-                  
-                  <Button className="btn-primary w-full mt-auto">Подробнее</Button>
-                </div>
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-10">
+                <TabsList className="grid grid-cols-2 md:grid-cols-5 w-full mb-6">
+                  {Object.keys(tabsLabels).map(key => (
+                    <TabsTrigger key={key} value={key}>
+                      {tabsLabels[key]}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
                 
-                <div className="tech-card p-6 flex flex-col h-full relative border-tech-purple">
-                  <div className="absolute -top-4 right-4 bg-tech-purple text-white px-4 py-1 rounded-full text-sm font-medium">
-                    Популярный
-                  </div>
-                  
-                  <div className="mb-4 text-center">
-                    <h3 className="text-xl font-bold mb-2">Стандарт</h3>
-                    <div className="text-3xl font-bold text-tech-purple">от 120 000 ₽</div>
-                    <p className="text-sm text-foreground/60 mt-1">Комплексный проект</p>
-                  </div>
-                  
-                  <ul className="mt-4 mb-6 space-y-3 flex-grow">
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Всё из тарифа Базовый</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Автоматизация до 3 бизнес-процессов</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Интеграция CRM/ERP системы</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Настройка аналитики и отчетности</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Поддержка 30 дней после внедрения</span>
-                    </li>
-                  </ul>
-                  
-                  <Button className="btn-primary w-full mt-auto">Подробнее</Button>
-                </div>
-                
-                <div className="tech-card p-6 flex flex-col h-full">
-                  <div className="mb-4 text-center">
-                    <h3 className="text-xl font-bold mb-2">Премиум</h3>
-                    <div className="text-3xl font-bold text-tech-purple">от 250 000 ₽</div>
-                    <p className="text-sm text-foreground/60 mt-1">Полное сопровождение</p>
-                  </div>
-                  
-                  <ul className="mt-4 mb-6 space-y-3 flex-grow">
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Всё из тарифа Стандарт</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Комплексная автоматизация всех процессов</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Разработка кастомных решений</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>AI-ассистенты и чат-боты</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Постоянная техническая поддержка</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-tech-purple font-bold">✓</span>
-                      <span>Ежемесячные обновления и оптимизации</span>
-                    </li>
-                  </ul>
-                  
-                  <Button className="btn-primary w-full mt-auto">Подробнее</Button>
-                </div>
-              </div>
+                {Object.keys(servicePlans).map((category) => (
+                  <TabsContent key={category} value={category}>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                      {servicePlans[category].map((plan, index) => (
+                        <ServicePlan 
+                          key={index} 
+                          plan={plan} 
+                          isPopular={index === 1 && category !== 'additional'} 
+                          openDetails={openPlanDetails}
+                        />
+                      ))}
+                    </div>
+                  </TabsContent>
+                ))}
+              </Tabs>
               
               <div className="mt-12 text-center">
                 <p className="text-foreground/70 mb-6">
@@ -129,11 +331,98 @@ const Services = () => {
                 </p>
                 <Button className="btn-secondary">Получить индивидуальное предложение</Button>
               </div>
+              
+              <div className="mt-16">
+                <h3 className="text-2xl font-bold mb-6 text-center">
+                  Сравнение тарифов
+                </h3>
+                
+                <div className="overflow-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Характеристики</TableHead>
+                        <TableHead>Базовый</TableHead>
+                        <TableHead className="bg-tech-purple/5 font-bold">Стандарт</TableHead>
+                        <TableHead>Премиум</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="font-medium">Аудит процессов</TableCell>
+                        <TableCell>Базовый</TableCell>
+                        <TableCell className="bg-tech-purple/5">Расширенный</TableCell>
+                        <TableCell>Комплексный</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Кастомизация</TableCell>
+                        <TableCell>Минимальная</TableCell>
+                        <TableCell className="bg-tech-purple/5">Средняя</TableCell>
+                        <TableCell>Полная</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Интеграции</TableCell>
+                        <TableCell>1 сервис</TableCell>
+                        <TableCell className="bg-tech-purple/5">До 3 сервисов</TableCell>
+                        <TableCell>Без ограничений</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Техподдержка</TableCell>
+                        <TableCell>На запуске</TableCell>
+                        <TableCell className="bg-tech-purple/5">В рабочие часы</TableCell>
+                        <TableCell>24/7</TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">Документация</TableCell>
+                        <TableCell>Базовая</TableCell>
+                        <TableCell className="bg-tech-purple/5">Стандартная</TableCell>
+                        <TableCell>Детальная</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </main>
       <Footer />
+      
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="max-w-xl">
+          {selectedPlan && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-2xl mb-2">{selectedPlan.name} - {selectedPlan.subtitle}</DialogTitle>
+              </DialogHeader>
+              <div className="mt-6 space-y-4">
+                <p className="text-lg text-foreground/80">{selectedPlan.details}</p>
+                
+                <h4 className="font-semibold text-lg mt-4">Что входит:</h4>
+                <ul className="space-y-2">
+                  {selectedPlan.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-tech-purple font-bold mt-1">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="pt-4">
+                  <div className="text-2xl font-bold text-tech-purple mb-2">{selectedPlan.price}</div>
+                  
+                  <div className="flex space-x-3 mt-4">
+                    <Button className="btn-primary flex-1">Записаться на консультацию</Button>
+                    <Button variant="outline" className="border-tech-purple text-tech-purple hover:bg-tech-purple/10" onClick={() => setDialogOpen(false)}>
+                      Закрыть
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

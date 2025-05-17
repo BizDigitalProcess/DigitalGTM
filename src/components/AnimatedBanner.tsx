@@ -186,7 +186,7 @@ const AnimatedBanner = () => {
           
           <div className="relative flex items-center justify-center mb-4">
             <div className="absolute -right-4 -top-4 bg-[#F97316] text-white py-2 px-4 rounded-lg shadow-lg animate-bounce">
-              <p className="font-semibold text-sm">Успей записаться на беслпатную консультацию</p>
+              <p className="font-semibold text-sm">Успей записаться на бесплатную консультацию</p>
             </div>
             <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
               <svg viewBox="0 0 24 24" className="w-12 h-12 text-white">

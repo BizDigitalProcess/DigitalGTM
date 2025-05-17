@@ -9,17 +9,18 @@ const Portfolio = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow pt-24">
-        <PortfolioSection />
-        
         <section className="py-16 md:py-24 bg-gradient-to-b from-tech-light-gray/30 to-white dark:from-tech-dark-bg/50 dark:to-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-3xl font-bold mb-8">
-                  <span className="gradient-text">Упс... Страница временно не доступна</span>
+                  <span className="gradient-text">Портфолио временно недоступно</span>
                 </h2>
-                <h3 className="text-3xl mb-8">
-                  <span className="gradient-text">На стадии разработки</span>
-                </h3>
+                <p className="text-xl mb-8">
+                  Страница находится в разработке
+                </p>
+                <Button className="btn-primary" asChild>
+                  <a href="/">Вернуться на главную</a>
+                </Button>
               </div>
           </div>
         </section>
