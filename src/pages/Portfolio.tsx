@@ -2,34 +2,175 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { ArrowRight, ExternalLink, X } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
+
+// Импортируем портфолио кейсы
+import { portfolioCases } from '@/data/portfolio-data';
 
 const Portfolio = () => {
+  const [selectedCase, setSelectedCase] = useState(null);
+
+  const openCaseDetails = (caseItem) => {
+    setSelectedCase(caseItem);
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow pt-24">
-        <section className="py-16 md:py-24 bg-gradient-to-b from-tech-light-gray/30 to-white dark:from-tech-dark-bg/50 dark:to-background">
+        <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="mb-10">
-                <img 
-                  src="/placeholder.svg" 
-                  alt="В разработке" 
-                  className="w-64 h-64 mx-auto opacity-50"
-                />
-              </div>
+            <div className="max-w-4xl mx-auto text-center mb-16">
               <h2 className="text-3xl font-bold mb-8">
-                <span className="gradient-text">Упс...</span> Портфолио временно недоступно
+                <span className="gradient-text">Портфолио</span> проектов
               </h2>
-              <p className="text-xl mb-8">
-                Страница находится в разработке и скоро будет доступна
+              <p className="text-lg text-foreground/80">
+                Реальные примеры автоматизации и оптимизации бизнес-процессов с измеримыми финансовыми результатами
               </p>
-              <Button className="btn-primary" asChild>
-                <a href="/">Вернуться на главную</a>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {portfolioCases.map((caseItem, index) => (
+                <Card 
+                  key={index} 
+                  className="overflow-hidden tech-card transition-all duration-300 cursor-pointer hover:shadow-lg"
+                >
+                  <div className="relative h-48">
+                    <img 
+                      src={caseItem.image || "/placeholder.svg"} 
+                      alt={caseItem.title} 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 left-2">
+                      <Badge className="bg-tech-orange text-white">{caseItem.client}</Badge>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-xl mb-2">{caseItem.title}</h3>
+                    <p className="text-foreground/70 text-sm mb-4">{caseItem.description}</p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {caseItem.tags && caseItem.tags.map((tag, i) => (
+                        <Badge key={i} variant="outline" className="border-tech-purple text-tech-purple">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                    
+                    {caseItem.metrics && (
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center mb-4">
+                        {caseItem.metrics.map((metric, i) => (
+                          <div key={i}>
+                            <p className="text-tech-purple font-bold">{metric.value}</p>
+                            <p className="text-xs text-foreground/60">{metric.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    
+                    <Button 
+                      variant="outline" 
+                      className="w-full border-tech-purple text-tech-purple hover:bg-tech-purple/10"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openCaseDetails(caseItem);
+                      }}
+                    >
+                      Подробнее
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <p className="text-lg text-foreground/80 mb-8">
+                Это только часть проектов. Свяжитесь со мной, чтобы обсудить, как я могу помочь вашему бизнесу достигнуть конкретных финансовых результатов.
+              </p>
+              <Button className="btn-primary flex items-center gap-2 group" onClick={() => window.open('https://t.me/CryF1sh', '_blank')}>
+                Обсудить ваш проект
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
           </div>
         </section>
+        
+        {/* Case details dialog */}
+        <Dialog open={!!selectedCase} onOpenChange={(open) => !open && setSelectedCase(null)}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            {selectedCase && (
+              <>
+                <DialogHeader>
+                  <DialogTitle className="text-2xl flex items-center justify-between">
+                    <span>{selectedCase.title}</span>
+                    <DialogClose className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-muted">
+                      <X size={18} />
+                    </DialogClose>
+                  </DialogTitle>
+                  <Badge className="w-fit bg-tech-orange text-white mb-2">
+                    {selectedCase.client}
+                  </Badge>
+                  <DialogDescription className="text-base text-foreground">
+                    {selectedCase.fullDescription || selectedCase.description}
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="mt-6">
+                  {selectedCase.process && (
+                    <>
+                      <h4 className="text-lg font-medium mb-3">Этапы проекта</h4>
+                      <ul className="space-y-2 mb-6">
+                        {selectedCase.process.map((step, index) => (
+                          <li key={index} className="flex items-start gap-2">
+                            <span className="w-6 h-6 rounded-full bg-tech-purple text-white flex items-center justify-center flex-shrink-0 mt-0.5">
+                              {index + 1}
+                            </span>
+                            <span>{step}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                  
+                  {selectedCase.businessValue && (
+                    <>
+                      <h4 className="text-lg font-medium mb-3">Бизнес-ценность</h4>
+                      <p className="mb-4">{selectedCase.businessValue}</p>
+                    </>
+                  )}
+                  
+                  {selectedCase.metrics && (
+                    <>
+                      <h4 className="text-lg font-medium mb-3">Результаты</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        {selectedCase.metrics.map((metric, i) => (
+                          <div key={i} className="p-4 bg-tech-purple/10 rounded-lg text-center">
+                            <p className="text-tech-purple text-2xl font-bold">{metric.value}</p>
+                            <p className="text-sm text-foreground/80">{metric.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  
+                  {selectedCase.tags && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {selectedCase.tags.map((tag, i) => (
+                        <Badge key={i} variant="outline" className="border-tech-purple text-tech-purple">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
       </main>
       <Footer />
     </div>

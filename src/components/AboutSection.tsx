@@ -1,6 +1,8 @@
 
-import { CheckCircle, Download, Briefcase, GraduationCap } from "lucide-react";
+import { CheckCircle, Download, Briefcase, GraduationCap, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const skills = [
   "N8N, .NET, Python, 1C",
@@ -12,6 +14,12 @@ const skills = [
 ];
 
 const experiences = [
+  {
+    title: "Специалист по автоматизации бизнес процессов",
+    company: "AIVIBE",
+    period: "Апрель 2025 - настоящее время",
+    description: "Создание AI-агентов и автоматизация бизнес процессов, разработка сложных программных продуктов."
+  },
   {
     title: "IT Business Automation | .NET Backend Developer | SaaS & API Integrations",
     company: "Freelance",
@@ -27,7 +35,7 @@ const experiences = [
   {
     title: ".NET Developer",
     company: "FoxLab",
-    period: "Июнь 2024 - настоящее время",
+    period: "Июнь 2024 - Март 2025",
     description: "Разработка масштабируемых решений для B2B и B2C клиентов."
   },
   {
@@ -48,8 +56,10 @@ const education = [
 ];
 
 const AboutSection = () => {
+  const [isExperienceOpen, setIsExperienceOpen] = useState(false);
+  const [isEducationOpen, setIsEducationOpen] = useState(false);
+
   const handleDownloadResume = () => {
-    // Create an empty PDF file for now
     const link = document.createElement('a');
     link.href = '/resume.pdf';
     link.download = 'resume.pdf';
@@ -74,7 +84,7 @@ const AboutSection = () => {
             
             {/* Experience badge */}
             <div className="absolute -bottom-6 -right-6 bg-tech-purple text-white py-3 px-6 rounded-lg shadow-lg">
-              <p className="font-bold text-xl">7+ лет опыта</p>
+              <p className="font-bold text-xl">8+ лет опыта</p>
             </div>
           </div>
           
@@ -85,7 +95,7 @@ const AboutSection = () => {
             </h2>
             
             <p className="text-lg text-foreground/80 mb-6">
-              Я специалист по автоматизации бизнес-процессов и GTM-инженерии с более чем 7-летним опытом работы. Помогаю бизнесам всех размеров трансформировать их операционную эффективность через внедрение современных технологических решений.
+              Я специалист по автоматизации бизнес-процессов и GTM-инженерии с более чем 8-летним опытом работы. Помогаю бизнесам всех размеров трансформировать их операционную эффективность через внедрение современных технологических решений.
             </p>
             
             <p className="text-lg text-foreground/80 mb-8">
@@ -120,52 +130,84 @@ const AboutSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Work Experience */}
             <div className="tech-card p-8">
-              <div className="flex items-center mb-6">
-                <div className="bg-tech-purple/10 p-3 rounded-full mr-4">
-                  <Briefcase className="text-tech-purple" size={24} />
-                </div>
-                <h3 className="text-2xl font-semibold">Опыт работы</h3>
-              </div>
-              
-              <div className="space-y-6">
-                {experiences.map((exp, index) => (
-                  <div key={index} className="border-l-2 border-tech-purple pl-4 relative">
-                    <div className="absolute w-3 h-3 bg-tech-purple rounded-full -left-[7px] top-1.5"></div>
-                    <h4 className="font-bold text-lg">{exp.title}</h4>
-                    {exp.company && <p className="text-tech-purple font-medium">{exp.company}</p>}
-                    <p className="text-sm text-foreground/60 mb-2">{exp.period}</p>
-                    <p>{exp.description}</p>
+              <Collapsible 
+                open={isExperienceOpen} 
+                onOpenChange={setIsExperienceOpen}
+                className="w-full"
+              >
+                <div className="flex items-center mb-6">
+                  <div className="bg-tech-purple/10 p-3 rounded-full mr-4">
+                    <Briefcase className="text-tech-purple" size={24} />
                   </div>
-                ))}
-                
-                <div className="border-l-2 border-tech-purple pl-4 relative">
-                  <div className="absolute w-3 h-3 bg-tech-purple rounded-full -left-[7px] top-1.5"></div>
-                  <p className="text-sm font-medium">+ 2 стажировки</p>
-                  <p className="text-sm text-foreground/70">Maxim technology & Гос. Оборон. Промышленное предприятие</p>
+                  <h3 className="text-2xl font-semibold flex-grow">Опыт работы</h3>
+                  <CollapsibleTrigger asChild>
+                    <Button variant="ghost" size="icon" className="ml-auto">
+                      {isExperienceOpen ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                      <span className="sr-only">Показать/скрыть</span>
+                    </Button>
+                  </CollapsibleTrigger>
                 </div>
-              </div>
+                
+                <CollapsibleContent className="space-y-6">
+                  {experiences.map((exp, index) => (
+                    <div key={index} className="border-l-2 border-tech-purple pl-4 relative">
+                      <div className="absolute w-3 h-3 bg-tech-purple rounded-full -left-[7px] top-1.5"></div>
+                      <h4 className="font-bold text-lg">{exp.title}</h4>
+                      {exp.company && <p className="text-tech-purple font-medium">{exp.company}</p>}
+                      <p className="text-sm text-foreground/60 mb-2">{exp.period}</p>
+                      <p>{exp.description}</p>
+                    </div>
+                  ))}
+                  
+                  <div className="border-l-2 border-tech-purple pl-4 relative">
+                    <div className="absolute w-3 h-3 bg-tech-purple rounded-full -left-[7px] top-1.5"></div>
+                    <p className="text-sm font-medium">+ 2 стажировки</p>
+                    <p className="text-sm text-foreground/70">Maxim technology & Гос. Оборон. Промышленное предприятие</p>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
             </div>
             
             {/* Education */}
             <div className="tech-card p-8">
-              <div className="flex items-center mb-6">
-                <div className="bg-tech-purple/10 p-3 rounded-full mr-4">
-                  <GraduationCap className="text-tech-purple" size={24} />
-                </div>
-                <h3 className="text-2xl font-semibold">Образование</h3>
-              </div>
-              
-              <div className="space-y-6">
-                {education.map((edu, index) => (
-                  <div key={index} className="border-l-2 border-tech-orange pl-4 relative">
-                    <div className="absolute w-3 h-3 bg-tech-orange rounded-full -left-[7px] top-1.5"></div>
-                    <h4 className="font-bold text-lg">{edu.degree}</h4>
-                    <p className="text-tech-orange font-medium">{edu.institution}</p>
-                    <p className="text-sm text-foreground/60 mb-2">{edu.period}</p>
-                    <p>{edu.details}</p>
+              <Collapsible 
+                open={isEducationOpen} 
+                onOpenChange={setIsEducationOpen}
+                className="w-full"
+              >
+                <div className="flex items-center mb-6">
+                  <div className="bg-tech-purple/10 p-3 rounded-full mr-4">
+                    <GraduationCap className="text-tech-purple" size={24} />
                   </div>
-                ))}
-              </div>
+                  <h3 className="text-2xl font-semibold flex-grow">Образование</h3>
+                  <CollapsibleTrigger asChild>
+                    <Button variant="ghost" size="icon" className="ml-auto">
+                      {isEducationOpen ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                      <span className="sr-only">Показать/скрыть</span>
+                    </Button>
+                  </CollapsibleTrigger>
+                </div>
+                
+                <CollapsibleContent className="space-y-6">
+                  {education.map((edu, index) => (
+                    <div key={index} className="border-l-2 border-tech-orange pl-4 relative">
+                      <div className="absolute w-3 h-3 bg-tech-orange rounded-full -left-[7px] top-1.5"></div>
+                      <h4 className="font-bold text-lg">{edu.degree}</h4>
+                      <p className="text-tech-orange font-medium">{edu.institution}</p>
+                      <p className="text-sm text-foreground/60 mb-2">{edu.period}</p>
+                      <p>{edu.details}</p>
+                    </div>
+                  ))}
+                </CollapsibleContent>
+              </Collapsible>
             </div>
           </div>
         </div>
