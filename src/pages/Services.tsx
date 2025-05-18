@@ -1,14 +1,15 @@
 
+import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Check, X, ArrowRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Check, ArrowRight } from 'lucide-react';
 
 const Services = () => {
-  const [activeTab, setActiveTab] = useState('automation');
+  const [activeTab, setActiveTab] = useState('development');
   const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
@@ -22,152 +23,242 @@ const Services = () => {
   }, []);
   
   const pricingTiers = {
-    automation: [
+    development: [
       {
-        name: "Базовый",
-        price: "от 50 000 ₽",
-        description: "Для компаний с простыми процессами",
+        name: "Эффективный старт",
+        price: "от 35 000 ₽",
+        description: "Базовый тариф",
         features: [
-          "Автоматизация 1-2 ручных процессов",
-          "Интеграция с 1-2 сервисами",
-          "Базовая техническая поддержка",
-          "Срок реализации: 1-2 недели"
+          "Автоматизация одного бизнес-процесса",
+          "Настройка базового программного решения",
+          "Минимальная интеграция с одним сервисом",
+          "Базовая документация по использованию",
+          "Техническая поддержка на запуск"
         ],
-        excludedFeatures: [
-          "AI компоненты",
-          "Сложные интеграции"
+        bonuses: [
+          "Бесплатная консультация по оптимизации выбранного процесса"
         ],
         popular: false
       },
       {
-        name: "Бизнес",
-        price: "от 150 000 ₽",
-        description: "Для растущих компаний со средней сложностью процессов",
+        name: "Быстрые результаты",
+        price: "75 000 ₽",
+        description: "Стандартный тариф",
         features: [
-          "Автоматизация 3-5 ручных процессов",
-          "Интеграция с 3-5 сервисами",
-          "Базовые AI компоненты",
-          "Расширенная техническая поддержка",
-          "Срок реализации: 2-4 недели",
-          "ROI от 200% за 3 месяца"
+          "Аудит ключевых бизнес-процессов для автоматизации",
+          "Разработка решения с настройкой под потребности бизнеса",
+          "Интеграция с основными системами (до 3 сервисов)",
+          "Базовое обучение персонала работе с системой",
+          "Техническая поддержка в рабочее время"
         ],
-        excludedFeatures: [],
+        bonuses: [
+          "Бесплатное составление базового ТЗ (экономия 5 000 руб.)",
+          "1 месяц технической поддержки в подарок"
+        ],
         popular: true
       },
       {
-        name: "Корпоративный",
-        price: "от 350 000 ₽",
-        description: "Для крупных компаний со сложными процессами",
+        name: "Бизнес под ключ",
+        price: "от 150 000 ₽",
+        description: "Премиум тариф",
         features: [
-          "Автоматизация 5+ ручных процессов",
-          "Интеграция с 5+ сервисами",
-          "Продвинутые AI компоненты",
-          "Персональный менеджер",
-          "Срок реализации: 1-3 месяца",
-          "ROI от 300% за 6 месяцев"
+          "Комплексный аудит бизнес-процессов компании",
+          "Разработка индивидуальной стратегии автоматизации",
+          "Создание кастомного программного решения с уникальным функционалом",
+          "Интеграция со всеми используемыми системами и сервисами",
+          "Обучение персонала и документация по использованию",
+          "Техническая поддержка 24/7 с гарантированным временем реакции",
+          "Персональный проджект-менеджер и выделенная команда разработки"
         ],
-        excludedFeatures: [],
+        bonuses: [
+          "Бесплатное составление детального ТЗ (экономия 30 000 руб.)",
+          "3 месяца технической поддержки в подарок"
+        ],
         popular: false
       }
     ],
-    ai: [
+    chatbots: [
       {
-        name: "Стартовый AI",
-        price: "от 100 000 ₽",
-        description: "Базовые AI решения для бизнеса",
+        name: "Умный ассистент",
+        price: "20 000 ₽",
+        description: "Базовый тариф",
         features: [
-          "Чат-бот с базой знаний",
-          "Интеграция с 1 источником данных",
-          "Базовая обучающая выборка",
-          "Техническая поддержка",
-          "Срок реализации: 2-3 недели"
+          "Разработка базового чат-бота для Telegram",
+          "Интеграция с Google-календарем и Google-таблицами",
+          "Подключение 1-2 каналов коммуникации",
+          "Базовые сценарии автоматизации",
+          "Стоимость обслуживания: 2000 руб. за 2000 пользователей"
         ],
-        excludedFeatures: [
-          "Обработка сложных запросов",
-          "Персонализация"
+        bonuses: [
+          "Базовая настройка под ваш фирменный стиль"
         ],
         popular: false
       },
       {
-        name: "Продвинутый AI",
-        price: "от 250 000 ₽",
-        description: "Комплексные AI решения для оптимизации бизнес-процессов",
+        name: "Продвинутый помощник",
+        price: "45 000 ₽",
+        description: "Стандартный тариф",
         features: [
-          "Умный помощник с обучением",
-          "Интеграция с 3+ источниками данных",
-          "Персонализация под пользователей",
-          "Расширенная техническая поддержка",
-          "Срок реализации: 1-2 месяца",
-          "ROI от 250% за 4 месяца"
+          "Разработка чат-бота с базовыми AI-функциями",
+          "Интеграция с основными CRM-системами",
+          "Подключение до 3 каналов коммуникации на выбор",
+          "Базовая аналитика и отчетность",
+          "Автоматическое заполнение карточек клиентов",
+          "Стоимость обслуживания: 2000 руб. за каждых 2000 пользователей"
         ],
-        excludedFeatures: [],
+        bonuses: [
+          "Настройка наиболее частых сценариев взаимодействия"
+        ],
         popular: true
       },
       {
-        name: "Корпоративный AI",
-        price: "от 500 000 ₽",
-        description: "Масштабные AI решения для крупных компаний",
+        name: "AI-менеджер Pro",
+        price: "85 000 ₽",
+        description: "Премиум тариф",
         features: [
-          "Комплексная AI экосистема",
-          "Интеграция с любыми источниками данных",
-          "Персонализация и адаптация под бизнес",
-          "Персональная команда поддержки",
-          "Срок реализации: 2-4 месяца",
-          "ROI от 350% за 6 месяцев"
+          "Разработка интеллектуального чат-бота с использованием передовых языковых моделей",
+          "Полная интеграция с CRM (Bitrix24, amoCRM, Kommo, Yclients, Altegio)",
+          "Подключение всех основных каналов: Telegram, WhatsApp, VK, сайт",
+          "Несколько AI-агентов (квалификатор + консультант)",
+          "Автоматизированное управление этапами сделки",
+          "Сегментация лидов и автоматическая квалификация",
+          "Стоимость обслуживания: 2000 руб. за каждых 2000 пользователей"
         ],
-        excludedFeatures: [],
+        bonuses: [
+          "Интеграция с Avito (экономия 2 999 руб.)",
+          "Кастомизация сценариев без дополнительной оплаты"
+        ],
         popular: false
       }
     ],
     gtm: [
       {
-        name: "GTM Базовый",
-        price: "от 80 000 ₽",
-        description: "Базовая настройка GTM для малого бизнеса",
+        name: "Первый шаг",
+        price: "30 000 ₽",
+        description: "Базовый тариф",
         features: [
-          "Базовая настройка Google Tag Manager",
-          "Отслеживание до 5 целей",
-          "Базовая аналитика",
-          "Срок реализации: 1-2 недели"
+          "Консультация по GTM стратегии",
+          "Разработка плана действий",
+          "Настройка 1-2 каналов лидогенерации"
         ],
-        excludedFeatures: [
-          "Продвинутая сегментация",
-          "Интеграция с CRM"
+        bonuses: [
+          "Аудит текущих маркетинговых активностей"
         ],
         popular: false
       },
       {
-        name: "GTM Продвинутый",
-        price: "от 150 000 ₽",
-        description: "Комплексная настройка GTM для среднего бизнеса",
+        name: "Быстрый старт",
+        price: "60 000 ₽",
+        description: "Стандартный тариф",
         features: [
-          "Продвинутая настройка Google Tag Manager",
-          "Отслеживание до 15 целей",
-          "Интеграция с CRM",
-          "Сегментация аудитории",
-          "Срок реализации: 2-3 недели",
-          "ROI от 220% за 3 месяца"
+          "Разработка базовой GTM стратегии",
+          "Настройка Яндекс директ по тарифу Mini+Ретаргетинг+РСЯ+таргетинг",
+          "Настройка GA на лендинг",
+          "Создание воронки продаж",
+          "Базовая аналитика с ежемесячными отчетами"
         ],
-        excludedFeatures: [],
+        bonuses: [
+          "Настройка чата или виджета обратного звонка"
+        ],
         popular: true
       },
       {
-        name: "GTM Корпоративный",
-        price: "от 300 000 ₽",
-        description: "Полный комплекс GTM услуг для крупных компаний",
+        name: "Полный запуск",
+        price: "120 000 ₽",
+        description: "Премиум тариф",
         features: [
-          "Комплексная настройка Google Tag Manager",
-          "Отслеживание неограниченного числа целей",
-          "Интеграция с любыми системами",
-          "Персональная команда поддержки",
-          "Срок реализации: 3-6 недель",
-          "ROI от 280% за 6 месяцев"
+          "Разработка комплексной GTM стратегии с аналитикой рынка",
+          "Настройка системы лидогенерации под ключ",
+          "Автоматизация маркетинговых процессов",
+          "Настройка расширенной аналитики и отчетности",
+          "Создание и оптимизация воронки продаж",
+          "Персональное курирование запуска проекта"
         ],
-        excludedFeatures: [],
+        bonuses: [
+          "Разработка скриптов продаж и обучение персонала",
+          "Лендинг по ведущим товарам\\услугам"
+        ],
+        popular: false
+      }
+    ],
+    outstaff: [
+      {
+        name: "Твой по запросу",
+        price: "80 000 ₽/мес.",
+        description: "Базовый тариф",
+        features: [
+          "40 часов работы в месяц",
+          "Ежемесячный отчет о выполненных задачах"
+        ],
+        bonuses: [
+          "Консультации по оптимизации текущих процессов"
+        ],
+        popular: false
+      },
+      {
+        name: "На половину твой",
+        price: "150 000 ₽/мес.",
+        description: "Стандартный тариф",
+        features: [
+          "80 часов работы в месяц (частичная занятость)",
+          "Еженедельные отчеты и планирование задач"
+        ],
+        bonuses: [
+          "Доступ к базе знаний по внедренным решениям"
+        ],
+        popular: true
+      },
+      {
+        name: "Я весь твой",
+        price: "300 000 ₽/мес.",
+        description: "Премиум тариф",
+        features: [
+          "160 часов работы в месяц (полная занятость)",
+          "Еженедельные отчеты о проделанной работе",
+          "Приоритетная техническая поддержка"
+        ],
+        bonuses: [
+          "Ежемесячный аудит и оптимизация процессов"
+        ],
         popular: false
       }
     ]
   };
+
+  const additionalServices = [
+    {
+      title: "Парсинг сайтов",
+      items: [
+        { name: "от 1 до 10 сайтов", price: "4500 ₽ за сайт" },
+        { name: "от 11 до 20 сайтов", price: "4000 ₽ за сайт" },
+        { name: "от 21 и свыше", price: "3500 ₽ за сайт" }
+      ]
+    },
+    {
+      title: "Установка и настройка готового софта",
+      items: [
+        { name: "Базовая установка", price: "5 000 ₽" },
+        { name: "Установка с настройкой", price: "10 000 ₽" },
+        { name: "Комплексная установка с интеграцией", price: "20 000 ₽" }
+      ]
+    },
+    {
+      title: "Разработка Технического задания",
+      items: [
+        { name: "Базовое ТЗ", price: "5 000 ₽" },
+        { name: "Стандартное ТЗ", price: "15 000 ₽" },
+        { name: "Детальное ТЗ", price: "30 000 ₽" }
+      ]
+    },
+    {
+      title: "Внедрение и настройка CRM",
+      items: [
+        { name: "Базовая настройка", price: "20 000 ₽" },
+        { name: "Стандартная настройка с интеграциями", price: "40 000 ₽" },
+        { name: "Комплексное внедрение", price: "80 000 ₽" }
+      ]
+    }
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -177,18 +268,20 @@ const Services = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                <span className="gradient-text">Услуги</span> и тарифы
+                <span className="gradient-text">Тарифная сетка</span> по оказанию IT-услуг автоматизации бизнеса
               </h1>
               <p className="text-lg text-foreground/80">
                 Выберите оптимальное решение для вашего бизнеса с гарантированным возвратом инвестиций
               </p>
             </div>
 
-            <Tabs defaultValue="automation" value={activeTab} onValueChange={setActiveTab} className="w-full max-w-5xl mx-auto">
-              <TabsList className={`grid w-full ${isMobile ? 'grid-cols-1 gap-2' : 'grid-cols-3'} mb-8`}>
-                <TabsTrigger value="automation" className="text-base py-3">Автоматизация процессов</TabsTrigger>
-                <TabsTrigger value="ai" className="text-base py-3">AI решения</TabsTrigger>
-                <TabsTrigger value="gtm" className="text-base py-3">GTM Engineering</TabsTrigger>
+            <Tabs defaultValue="development" value={activeTab} onValueChange={setActiveTab} className="w-full max-w-5xl mx-auto">
+              <TabsList className={`grid w-full ${isMobile ? 'grid-cols-1 gap-2' : 'flex flex-wrap justify-center'} mb-8`}>
+                <TabsTrigger value="development" className="text-base py-3">Разработка ПО и автоматизация</TabsTrigger>
+                <TabsTrigger value="chatbots" className="text-base py-3">Разработка чат-ботов</TabsTrigger>
+                <TabsTrigger value="gtm" className="text-base py-3">Go-To-Market инженерия</TabsTrigger>
+                <TabsTrigger value="outstaff" className="text-base py-3">Аутстафф ИТ специалиста</TabsTrigger>
+                <TabsTrigger value="additional" className="text-base py-3">Дополнительные услуги</TabsTrigger>
               </TabsList>
 
               {Object.keys(pricingTiers).map((key) => (
@@ -211,6 +304,7 @@ const Services = () => {
                         <CardContent>
                           <div className="space-y-5">
                             <div>
+                              <h4 className="text-sm font-medium mb-3 text-foreground">Что входит:</h4>
                               <ul className="space-y-3">
                                 {tier.features.map((feature, i) => (
                                   <li key={i} className="flex items-start">
@@ -218,15 +312,22 @@ const Services = () => {
                                     <span className="ml-3 text-foreground/80">{feature}</span>
                                   </li>
                                 ))}
-                                {tier.excludedFeatures.map((feature, i) => (
+                              </ul>
+                            </div>
+                            
+                            <div>
+                              <h4 className="text-sm font-medium mb-3 text-foreground">Бонусы:</h4>
+                              <ul className="space-y-3">
+                                {tier.bonuses.map((bonus, i) => (
                                   <li key={i} className="flex items-start">
-                                    <X className="h-5 w-5 text-red-500 shrink-0" />
-                                    <span className="ml-3 text-foreground/60">{feature}</span>
+                                    <Check className="h-5 w-5 text-tech-purple shrink-0" />
+                                    <span className="ml-3 text-tech-purple font-medium">{bonus}</span>
                                   </li>
                                 ))}
                               </ul>
                             </div>
-                            <div className="flex flex-col gap-3">
+                            
+                            <div className="flex flex-col gap-3 pt-4">
                               <Button 
                                 variant="default"
                                 className="bg-tech-purple hover:bg-tech-purple/90 w-full"
@@ -237,9 +338,9 @@ const Services = () => {
                               <Button 
                                 variant="outline" 
                                 className="border-tech-purple text-tech-purple hover:bg-tech-purple/10 w-full"
-                                onClick={() => window.location.href = `#pricing-details-${key}-${index}`}
+                                onClick={() => window.open('https://t.me/CryF1sh', '_blank')}
                               >
-                                Подробнее
+                                Задать вопрос
                               </Button>
                             </div>
                           </div>
@@ -249,6 +350,52 @@ const Services = () => {
                   </div>
                 </TabsContent>
               ))}
+              
+              <TabsContent value="additional" className="mt-0">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Дополнительные услуги</CardTitle>
+                    <CardDescription>
+                      Индивидуальные услуги для расширения ваших технических возможностей
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 gap-6">
+                      {additionalServices.map((service, index) => (
+                        <div key={index} className="border rounded-lg p-4">
+                          <h3 className="text-lg font-semibold mb-3">{service.title}</h3>
+                          <Table>
+                            <TableHeader>
+                              <TableRow>
+                                <TableHead>Услуга</TableHead>
+                                <TableHead className="text-right">Стоимость</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                              {service.items.map((item, i) => (
+                                <TableRow key={i}>
+                                  <TableCell>{item.name}</TableCell>
+                                  <TableCell className="text-right font-medium">{item.price}</TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="mt-6 text-center">
+                      <Button 
+                        variant="default"
+                        className="bg-tech-purple hover:bg-tech-purple/90"
+                        onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}
+                      >
+                        Записаться на консультацию
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
             </Tabs>
 
             <div className="text-center mt-16">
