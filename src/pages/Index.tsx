@@ -58,31 +58,32 @@ const Index = () => {
             
             <div className="flex flex-col lg:flex-row items-start gap-12">
               {/* Left side: About me */}
-              <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-center gap-8">
-                {/* Image */}
-                <div className="w-32 h-32 lg:w-40 lg:h-40 relative flex-shrink-0">
+              <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-center gap-6">
+                {/* Image - smaller size */}
+                <div className="w-24 h-24 lg:w-28 lg:h-28 relative flex-shrink-0">
                   <div className="rounded-full overflow-hidden shadow-lg">
                     <img 
                       src="/lovable-uploads/03a35695-ef86-4301-b561-62513f166123.png" 
-                      alt="GTM и автоматизация специалист" 
+                      alt="Богомолов Глеб - GTM и автоматизация специалист" 
                       className="w-full h-full object-cover"
                     />
                   </div>
                   
                   {/* Experience badge */}
-                  <div className="absolute -bottom-2 -right-2 bg-tech-purple text-white py-1 px-3 rounded-lg shadow-lg">
-                    <p className="font-bold text-sm">8+ лет опыта</p>
+                  <div className="absolute -bottom-2 -right-2 bg-tech-purple text-white py-1 px-3 rounded-lg shadow-lg text-xs">
+                    <p className="font-bold">8+ лет опыта</p>
                   </div>
                 </div>
                 
                 {/* Content */}
                 <div>
-                  <p className="text-lg text-foreground/80 mb-4">
-                    Я специалист по автоматизации бизнес-процессов и GTM-инженерии с более чем 8-летним опытом работы. Помогаю бизнесам всех размеров трансформировать их операционную эффективность через внедрение современных технологических решений.
+                  <h3 className="text-xl font-semibold mb-2">Богомолов Глеб</h3>
+                  <p className="text-foreground/80 mb-4">
+                    Специалист по автоматизации бизнес-процессов и GTM-инженерии с более чем 8-летним опытом работы. Помогаю бизнесам трансформировать их операционную эффективность через внедрение технологических решений.
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button className="btn-primary" asChild>
+                    <Button variant="default" className="bg-tech-purple hover:bg-tech-purple/90" asChild>
                       <Link to="/about">Подробнее обо мне</Link>
                     </Button>
                     <Button variant="outline" className="border-tech-purple text-tech-purple hover:bg-tech-purple/10" onClick={() => window.open('/resume.pdf', '_blank')}>
@@ -108,9 +109,6 @@ const Index = () => {
                       <p className="text-sm text-foreground/60 mb-1">Email</p>
                       <p className="font-medium">glebbogomolov04@gmail.com</p>
                     </div>
-                    <Button variant="ghost" className="ml-auto text-tech-purple hover:bg-tech-purple/10" onClick={() => window.open('mailto:glebbogomolov04@gmail.com')}>
-                      Написать
-                    </Button>
                   </div>
                   
                   {/* Telegram */}
@@ -124,9 +122,6 @@ const Index = () => {
                       <p className="text-sm text-foreground/60 mb-1">Telegram</p>
                       <p className="font-medium">@CryF1sh</p>
                     </div>
-                    <Button variant="ghost" className="ml-auto text-tech-purple hover:bg-tech-purple/10" onClick={() => window.open('https://t.me/CryF1sh', '_blank')}>
-                      Написать
-                    </Button>
                   </div>
                   
                   {/* Telegram Bot */}
@@ -141,7 +136,7 @@ const Index = () => {
                       <p className="text-sm text-foreground/60 mb-1">Запись на консультацию</p>
                       <p className="font-medium">Telegram-бот для записи на бесплатную консультацию</p>
                     </div>
-                    <Button variant="primary" className="btn-primary" onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}>
+                    <Button variant="default" className="bg-tech-purple hover:bg-tech-purple/90" onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}>
                       Записаться
                     </Button>
                   </div>

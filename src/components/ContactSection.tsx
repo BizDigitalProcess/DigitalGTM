@@ -20,13 +20,13 @@ const ContactSection = () => {
             <div className="bg-tech-purple/10 rounded-full p-4 mb-4">
               <MessageSquare className="w-8 h-8 text-tech-purple" />
             </div>
-            <h3 className="text-xl font-semibold mb-2">AI Ассистент</h3>
+            <h3 className="text-xl font-semibold mb-2">Бесплатная консультация</h3>
             <p className="text-foreground/70 mb-4">
-              Мгновенный ответ на базовые вопросы через AI-бота и запись на консультацию
+              Запись на бесплатную консультацию через моего Telegram-бота
             </p>
-            <Button variant="outline" className="mt-auto border-tech-purple text-tech-purple hover:bg-tech-purple/10" asChild>
+            <Button variant="default" className="mt-auto bg-tech-purple hover:bg-tech-purple/90" asChild>
               <a href="https://t.me/Asya_CryF1shHelper_bot" target="_blank" rel="noopener noreferrer">
-                Открыть чат
+                Записаться на консультацию
               </a>
             </Button>
           </div>
@@ -54,11 +54,9 @@ const ContactSection = () => {
             <p className="text-foreground/70 mb-4">
               Для официальных запросов и коммерческих предложений
             </p>
-            <Button variant="outline" className="mt-auto border-tech-purple text-tech-purple hover:bg-tech-purple/10" asChild>
-              <a href="mailto:glebbogomolov04@gmail.com">
-                Написать письмо
-              </a>
-            </Button>
+            <div className="text-tech-purple font-medium">
+              glebbogomolov04@gmail.com
+            </div>
           </div>
         </div>
       </div>

@@ -14,8 +14,14 @@ const PortfolioSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedCase, setSelectedCase] = useState<typeof portfolioCases[0] | null>(null);
   
-  // Use only the first 3 cases for the homepage
-  const homepageCases = portfolioCases.slice(0, 3);
+  // Use the first 3 cases for the homepage
+  const featuredCases = [
+    portfolioCases.find(item => item.title.includes("Автоматизация подбора материалов")),
+    portfolioCases.find(item => item.title.includes("AI агент для онбординга")),
+    portfolioCases.find(item => item.title.includes("GTM Engineering"))
+  ].filter(Boolean);
+  
+  const homepageCases = featuredCases.length === 3 ? featuredCases : portfolioCases.slice(0, 3);
   
   const openCaseDetails = (caseItem: typeof portfolioCases[0]) => {
     setSelectedCase(caseItem);
@@ -46,6 +52,11 @@ const PortfolioSection = () => {
                   alt={caseItem.title} 
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = "/placeholder.svg";
+                  }}
                 />
                 <div className="absolute top-2 left-2">
                   <Badge className="bg-tech-orange text-white">{caseItem.client}</Badge>
@@ -88,7 +99,7 @@ const PortfolioSection = () => {
         </div>
         
         <div className="text-center">
-          <Button className="btn-primary flex items-center gap-2 group" asChild>
+          <Button variant="default" className="bg-tech-purple hover:bg-tech-purple/90 flex items-center gap-2 group" asChild>
             <Link to="/portfolio">
               Смотреть все проекты
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
