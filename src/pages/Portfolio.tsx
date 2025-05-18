@@ -2,17 +2,57 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
-import { useState } from 'react';
-import { ArrowRight, ExternalLink, X } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { ArrowRight, ExternalLink, X, Filter } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 
-// Импортируем портфолио кейсы
+// Import the portfolio cases
 import { portfolioCases } from '@/data/portfolio-data';
 
 const Portfolio = () => {
   const [selectedCase, setSelectedCase] = useState(null);
+  const [filter, setFilter] = useState('all');
+  const [filteredCases, setFilteredCases] = useState(portfolioCases);
+  
+  // Extract unique categories/tags from all cases
+  const allTags = Array.from(
+    new Set(portfolioCases.flatMap(caseItem => caseItem.tags || []))
+  ).sort();
+
+  // Group tags into categories for better organization
+  const categories = {
+    'all': 'Все проекты',
+    'ai': 'AI и Автоматизация',
+    'integration': 'Интеграции',
+    'security': 'Безопасность',
+    'analytics': 'Аналитика и Данные',
+    'dev': 'Разработка'
+  };
+  
+  const categoryTags = {
+    'ai': ['AI', 'Автоматизация', 'RAG', 'NLP', 'Чат-бот', 'ML'],
+    'integration': ['API', 'Интеграция', 'ERP-интеграция', '1С', 'Документооборот'],
+    'security': ['Безопасность', 'Контроль доступа', 'Защита информации', 'Мониторинг'],
+    'analytics': ['Аналитика', 'GTM', 'SEO', 'ML-аналитика', 'Анализ сантимента'],
+    'dev': ['Разработка', 'Мобильная разработка', 'Карпулинг', 'Геолокация', 'Kotlin', 'OAuth2']
+  };
+
+  // Filter cases based on selected category
+  useEffect(() => {
+    if (filter === 'all') {
+      setFilteredCases(portfolioCases);
+    } else {
+      // Filter based on tags that belong to the selected category
+      const relevantTags = categoryTags[filter] || [];
+      setFilteredCases(
+        portfolioCases.filter(caseItem => 
+          caseItem.tags && caseItem.tags.some(tag => relevantTags.includes(tag))
+        )
+      );
+    }
+  }, [filter]);
 
   const openCaseDetails = (caseItem) => {
     setSelectedCase(caseItem);
@@ -33,8 +73,22 @@ const Portfolio = () => {
               </p>
             </div>
 
+            {/* Category filters */}
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {Object.entries(categories).map(([key, label]) => (
+                <Badge 
+                  key={key}
+                  variant={filter === key ? "default" : "outline"}
+                  className={`cursor-pointer px-3 py-1 text-sm ${filter === key ? 'bg-tech-purple hover:bg-tech-purple/90' : 'border-tech-purple/50 text-tech-purple hover:bg-tech-purple/10'}`}
+                  onClick={() => setFilter(key)}
+                >
+                  {label}
+                </Badge>
+              ))}
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              {portfolioCases.map((caseItem, index) => (
+              {filteredCases.map((caseItem, index) => (
                 <Card 
                   key={index} 
                   className="overflow-hidden tech-card transition-all duration-300 cursor-pointer hover:shadow-lg"
@@ -44,6 +98,7 @@ const Portfolio = () => {
                       src={caseItem.image || "/placeholder.svg"} 
                       alt={caseItem.title} 
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                     <div className="absolute top-2 left-2">
                       <Badge className="bg-tech-orange text-white">{caseItem.client}</Badge>
@@ -62,7 +117,7 @@ const Portfolio = () => {
                     </div>
                     
                     {caseItem.metrics && (
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center mb-4">
+                      <div className="grid grid-cols-3 gap-2 text-center mb-4">
                         {caseItem.metrics.map((metric, i) => (
                           <div key={i}>
                             <p className="text-tech-purple font-bold">{metric.value}</p>

@@ -93,7 +93,7 @@ const ServicesSection = () => {
                   Записаться на консультацию
                 </Button>
                 <Button 
-                  variant="ghost" 
+                  variant="outline" 
                   className="text-tech-purple hover:text-tech-dark-purple hover:bg-tech-purple/10"
                   onClick={() => openServiceDetails(service)}
                 >
