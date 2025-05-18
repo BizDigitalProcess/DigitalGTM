@@ -90,8 +90,8 @@ const AnimatedBanner = () => {
       </div>
       
       {/* Background gears that won't block text */}
-      <div className="absolute inset-0 pointer-events-none z-[1] opacity-30">
-        {/* Red gears for stage 1 */}
+      <div className="absolute inset-0 pointer-events-none z-[1] opacity-20">
+        {/* Gears */}
         <div className="gear-container absolute top-10 left-10">
           <svg viewBox="0 0 24 24" className="w-16 h-16 text-red-500 animate-spin-slow gear-red">
             <path fill="currentColor" d="M12,5 C15.866,5 19,8.13401 19,12 C19,15.866 15.866,19 12,19 C8.13401,19 5,15.866 5,12 C5,8.13401 8.13401,5 12,5 Z M12,8 C9.79086,8 8,9.79086 8,12 C8,14.2091 9.79086,16 12,16 C14.2091,16 16,14.2091 16,12 C16,9.79086 14.2091,8 12,8 Z M8,2 L16,2 L16,4 L8,4 L8,2 Z M8,20 L16,20 L16,22 L8,22 L8,20 Z M20,8 L22,8 L22,16 L20,16 L20,8 Z M2,8 L4,8 L4,16 L2,16 L2,8 Z M19.0711,3.51472 L20.4853,4.92893 L19.0711,6.34315 L17.6569,4.92893 L19.0711,3.51472 Z M4.92893,3.51472 L6.34315,4.92893 L4.92893,6.34315 L3.51472,4.92893 L4.92893,3.51472 Z M19.0711,19.0711 L20.4853,17.6569 L19.0711,16.2426 L17.6569,17.6569 L19.0711,19.0711 Z M4.92893,19.0711 L6.34315,17.6569 L4.92893,16.2426 L3.51472,17.6569 L4.92893,19.0711 Z" />
@@ -109,8 +109,8 @@ const AnimatedBanner = () => {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-10">
         {/* Stage 1: Problem - with red gears and glitches */}
         <div className="stage-1 absolute inset-0 flex flex-col items-center justify-center p-6 transition-opacity duration-700 opacity-0">
-          <div className="relative mb-4 z-20">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white drop-shadow-lg mb-4 bg-black/30 px-4 py-2 rounded-lg backdrop-blur-sm">
+          <div className="relative z-20">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white drop-shadow-lg bg-black/60 px-4 py-2 rounded-lg backdrop-blur-sm">
               Ваш бизнес теряет <span className="percentage text-[#F97316]">40%</span> прибыли из-за рутины?
             </h2>
             <div className="absolute -z-10 w-full h-full opacity-40 top-0 left-0">
@@ -146,24 +146,24 @@ const AnimatedBanner = () => {
         
         {/* Stage 2: Solution - with green gears and tech logos */}
         <div className="stage-2 absolute inset-0 flex flex-col items-center justify-center p-6 transition-opacity duration-700 opacity-0">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white drop-shadow-lg mb-4 bg-black/30 px-4 py-2 rounded-lg backdrop-blur-sm z-20">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white drop-shadow-lg bg-black/60 px-4 py-2 rounded-lg backdrop-blur-sm z-20">
             Автоматизируем процессы за 14 дней с гарантией ROI <span className="text-[#F97316]">200%</span>!
           </h2>
           
-          <div className="flex flex-wrap justify-center gap-3 mb-6 z-20">
-            <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-white flex items-center">
+          <div className="flex flex-wrap justify-center gap-3 mt-4 z-20">
+            <div className="bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-white flex items-center">
               <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
               Python
             </div>
-            <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-white flex items-center">
+            <div className="bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-white flex items-center">
               <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
               .NET
             </div>
-            <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-white flex items-center">
+            <div className="bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-white flex items-center">
               <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
               n8n
             </div>
-            <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-white flex items-center">
+            <div className="bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-white flex items-center">
               <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
               1С
             </div>
@@ -195,20 +195,22 @@ const AnimatedBanner = () => {
         
         {/* Stage 3: CTA - with consultation form */}
         <div className="stage-3 absolute inset-0 flex flex-col items-center justify-center p-6 transition-opacity duration-700 opacity-0">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white drop-shadow-lg mb-8 mt-12 bg-black/30 px-4 py-2 rounded-lg backdrop-blur-sm z-20">
-            Бесплатная консультация GTM-инженера
-          </h2>
-          
-          {/* Consultation form */}
-          <div className="bg-white/20 backdrop-blur-md p-5 rounded-lg border border-white/20 w-full max-w-sm mx-auto shadow-lg z-20">
-            <p className="text-white text-sm font-medium mb-4 text-center">
-              Бесплатная консультация от специалиста по автоматизации бизнес процессов
-            </p>
-            <div 
-              className="bg-tech-purple text-white py-3 px-4 rounded-md text-center cursor-pointer hover:bg-tech-purple/80 transition-colors shadow-lg font-medium text-lg"
-              onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}
-            >
-              Получить консультацию
+          <div className="flex flex-col items-center justify-center w-full h-full">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white drop-shadow-lg bg-black/60 px-4 py-2 rounded-lg backdrop-blur-sm z-20 mb-8">
+              Бесплатная консультация GTM-инженера
+            </h2>
+            
+            {/* Consultation form */}
+            <div className="bg-black/60 backdrop-blur-md p-5 rounded-lg border border-white/20 w-full max-w-sm mx-auto shadow-lg z-20">
+              <p className="text-white text-sm font-medium mb-4 text-center">
+                Бесплатная консультация от специалиста по автоматизации бизнес процессов
+              </p>
+              <div 
+                className="bg-tech-purple text-white py-3 px-4 rounded-md text-center cursor-pointer hover:bg-tech-purple/80 transition-colors shadow-lg font-medium text-lg"
+                onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}
+              >
+                Получить консультацию
+              </div>
             </div>
           </div>
           
@@ -316,6 +318,7 @@ const AnimatedBanner = () => {
 
         .gear-red, .gear-green {
           transition: color 1.5s ease-in-out;
+          color: #ff4444;
         }
         
         .stage-2 .gear-red {
