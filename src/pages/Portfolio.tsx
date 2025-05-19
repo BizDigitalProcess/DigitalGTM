@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from 'react';
-import { ArrowRight, ExternalLink, X, Filter } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
@@ -69,7 +69,7 @@ const Portfolio = () => {
                 <span className="gradient-text">Портфолио</span> проектов
               </h2>
               <p className="text-lg text-foreground/80">
-                Реальные примеры автоматизации и оптимизации бизнес-процессов с измеримыми финансовыми результатами
+                Мы с гордостью показываем результаты нашей работы: каждый проект в портфолио — это история успеха бизнеса, который стал эффективнее благодаря автоматизации
               </p>
             </div>
 
@@ -93,18 +93,8 @@ const Portfolio = () => {
                   key={index} 
                   className="overflow-hidden tech-card transition-all duration-300 cursor-pointer hover:shadow-lg"
                 >
-                  <div className="relative h-48">
-                    <img 
-                      src={caseItem.image || "/placeholder.svg"} 
-                      alt={caseItem.title} 
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute top-2 left-2">
-                      <Badge className="bg-tech-orange text-white">{caseItem.client}</Badge>
-                    </div>
-                  </div>
                   <CardContent className="p-6">
+                    <Badge className="mb-3 bg-tech-orange text-white">{caseItem.client}</Badge>
                     <h3 className="font-semibold text-xl mb-2">{caseItem.title}</h3>
                     <p className="text-foreground/70 text-sm mb-4">{caseItem.description}</p>
                     

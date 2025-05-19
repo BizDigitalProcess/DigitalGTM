@@ -35,7 +35,7 @@ const PortfolioSection = () => {
             <span className="gradient-text">Портфолио</span> проектов
           </h2>
           <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
-            Реальные примеры автоматизации и оптимизации бизнес-процессов с измеримыми результатами
+            Мы помогли десяткам компаний преодолеть операционные трудности и достичь впечатляющих бизнес-результатов. Ваш бизнес может быть следующим!
           </p>
         </div>
         
@@ -46,22 +46,6 @@ const PortfolioSection = () => {
               className={`overflow-hidden tech-card transition-all duration-300 cursor-pointer ${activeIndex === index ? 'ring-2 ring-tech-purple' : ''}`}
               onClick={() => setActiveIndex(index)}
             >
-              <div className="relative h-48">
-                <img 
-                  src={caseItem.image || "/placeholder.svg"} 
-                  alt={caseItem.title} 
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.onerror = null;
-                    target.src = "/placeholder.svg";
-                  }}
-                />
-                <div className="absolute top-2 left-2">
-                  <Badge className="bg-tech-orange text-white">{caseItem.client}</Badge>
-                </div>
-              </div>
               <CardContent className="p-6">
                 <h3 className="font-semibold text-xl mb-2">{caseItem.title}</h3>
                 <p className="text-foreground/70 text-sm mb-4">{caseItem.description}</p>
