@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -52,7 +51,7 @@ const Services = () => {
           "Разработка решения с настройкой под потребности бизнеса",
           "Интеграция с основными системами (до 3 сервисов)",
           "Базовое обучение персонала работе с системой",
-          "Техническая поддержка в рабочее время"
+          "Техническая поддержка в рабочее время в течении первого месяца"
         ],
         bonuses: [],
         popular: true
@@ -251,96 +250,118 @@ const Services = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                <span className="gradient-text">Тарифная сетка</span> по оказанию IT-услуг автоматизации бизнеса
+                <span className="gradient-text">Тарифная сетка по оказанию IT-услуг автоматизации бизнеса</span>
               </h1>
               <p className="text-lg text-foreground/80">
                 Выберите оптимальное решение для вашего бизнеса с гарантированным возвратом инвестиций
               </p>
             </div>
 
-            <Tabs defaultValue="development" value={activeTab} onValueChange={setActiveTab} className="w-full max-w-5xl mx-auto">
-              {/* Responsive tabs layout */}
-              <div className="mb-8 overflow-x-auto">
-                <TabsList className={`${isMobile ? 'flex' : 'grid grid-cols-5'} min-w-max w-full`}>
-                  <TabsTrigger value="development" className="text-base py-3 flex-1">Разработка ПО и автоматизация</TabsTrigger>
-                  <TabsTrigger value="chatbots" className="text-base py-3 flex-1">Разработка чат-ботов</TabsTrigger>
-                  <TabsTrigger value="gtm" className="text-base py-3 flex-1">Go-To-Market инженерия</TabsTrigger>
-                  <TabsTrigger value="outstaff" className="text-base py-3 flex-1">Аутстафф ИТ специалиста</TabsTrigger>
-                  <TabsTrigger value="additional" className="text-base py-3 flex-1">Дополнительные услуги</TabsTrigger>
-                </TabsList>
+            {/* New tabs implementation */}
+            <div className="max-w-5xl mx-auto mb-12">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4 overflow-x-auto">
+                <button 
+                  onClick={() => setActiveTab('development')}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'development' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                >
+                  Разработка ПО и автоматизация
+                </button>
+                <button 
+                  onClick={() => setActiveTab('chatbots')}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'chatbots' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                >
+                  Разработка чат-ботов
+                </button>
+                <button 
+                  onClick={() => setActiveTab('gtm')}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'gtm' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                >
+                  Go-To-Market инженерия
+                </button>
+                <button 
+                  onClick={() => setActiveTab('outstaff')}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'outstaff' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                >
+                  Аутстафф ИТ специалиста
+                </button>
+                <button 
+                  onClick={() => setActiveTab('additional')}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'additional' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                >
+                  Дополнительные услуги
+                </button>
               </div>
+            </div>
 
-              {Object.keys(pricingTiers).map((key) => (
-                <TabsContent key={key} value={key} className="mt-0">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {pricingTiers[key].map((tier, index) => (
-                      <Card key={index} className={`relative overflow-hidden ${tier.popular ? 'border-tech-purple shadow-lg' : ''}`}>
-                        {tier.popular && (
-                          <div className="absolute top-0 right-0 bg-tech-purple text-white px-3 py-1 text-sm font-medium">
-                            Популярный
+            {/* Display selected service content */}
+            <div className="max-w-5xl mx-auto">
+              {activeTab !== 'additional' ? (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {pricingTiers[activeTab]?.map((tier, index) => (
+                    <Card key={index} className={`relative overflow-hidden ${tier.popular ? 'border-tech-purple shadow-lg' : ''}`}>
+                      {tier.popular && (
+                        <div className="absolute top-0 right-0 bg-tech-purple text-white px-3 py-1 text-sm font-medium">
+                          Популярный
+                        </div>
+                      )}
+                      <CardHeader className="pb-2">
+                        <CardTitle>{tier.name}</CardTitle>
+                        <CardDescription className="mt-2">{tier.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-5">
+                          <div>
+                            <h4 className="text-sm font-medium mb-3 text-foreground">Что входит:</h4>
+                            <ul className="space-y-3">
+                              {tier.features.map((feature, i) => (
+                                <li key={i} className="flex items-start">
+                                  <Check className="h-5 w-5 text-green-500 shrink-0" />
+                                  <span className="ml-3 text-foreground/80">{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
-                        )}
-                        <CardHeader className="pb-2">
-                          <CardTitle>{tier.name}</CardTitle>
-                          <CardDescription className="mt-2">{tier.description}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="space-y-5">
+                          
+                          {tier.bonuses.length > 0 && (
                             <div>
-                              <h4 className="text-sm font-medium mb-3 text-foreground">Что входит:</h4>
+                              <h4 className="text-sm font-medium mb-3 text-foreground">Бонусы:</h4>
                               <ul className="space-y-3">
-                                {tier.features.map((feature, i) => (
+                                {tier.bonuses.map((bonus, i) => (
                                   <li key={i} className="flex items-start">
-                                    <Check className="h-5 w-5 text-green-500 shrink-0" />
-                                    <span className="ml-3 text-foreground/80">{feature}</span>
+                                    <Check className="h-5 w-5 text-tech-purple shrink-0" />
+                                    <span className="ml-3 text-tech-purple font-medium">{bonus}</span>
                                   </li>
                                 ))}
                               </ul>
                             </div>
-                            
-                            {tier.bonuses.length > 0 && (
-                              <div>
-                                <h4 className="text-sm font-medium mb-3 text-foreground">Бонусы:</h4>
-                                <ul className="space-y-3">
-                                  {tier.bonuses.map((bonus, i) => (
-                                    <li key={i} className="flex items-start">
-                                      <Check className="h-5 w-5 text-tech-purple shrink-0" />
-                                      <span className="ml-3 text-tech-purple font-medium">{bonus}</span>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                            
-                            <div className="mt-4 p-3 bg-tech-purple/10 rounded-lg text-center">
-                              <span className="text-2xl font-bold text-tech-purple">{tier.price}</span>
-                            </div>
-                            
-                            <div className="flex flex-col gap-3 pt-4">
-                              <Button 
-                                variant="default"
-                                className="bg-tech-purple hover:bg-tech-purple/90 w-full"
-                                onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}
-                              >
-                                Записаться на консультацию
-                              </Button>
-                              <Button 
-                                variant="outline" 
-                                className="border-tech-purple text-tech-purple hover:bg-tech-purple/10 w-full"
-                                onClick={() => window.open('https://t.me/CryF1sh', '_blank')}
-                              >
-                                Задать вопрос
-                              </Button>
-                            </div>
+                          )}
+                          
+                          <div className="mt-4 p-3 bg-tech-purple/10 rounded-lg text-center">
+                            <span className="text-2xl font-bold text-tech-purple">{tier.price}</span>
                           </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </TabsContent>
-              ))}
-              
-              <TabsContent value="additional" className="mt-0">
+                          
+                          <div className="flex flex-col gap-3 pt-4">
+                            <Button 
+                              variant="default"
+                              className="bg-tech-purple hover:bg-tech-purple/90 w-full"
+                              onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}
+                            >
+                              Записаться на консультацию
+                            </Button>
+                            <Button 
+                              variant="outline" 
+                              className="border-tech-purple text-tech-purple hover:bg-tech-purple/10 w-full"
+                              onClick={() => window.open('https://t.me/CryF1sh', '_blank')}
+                            >
+                              Задать вопрос
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
                 <Card>
                   <CardHeader>
                     <CardTitle>Дополнительные услуги</CardTitle>
@@ -374,8 +395,8 @@ const Services = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </TabsContent>
-            </Tabs>
+              )}
+            </div>
 
             <div className="text-center mt-16">
               <p className="text-foreground/80 mb-6 max-w-3xl mx-auto">
