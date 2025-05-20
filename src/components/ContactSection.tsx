@@ -7,8 +7,8 @@ const ContactSection = () => {
     <section className="py-16 md:py-24 bg-gradient-to-b from-background to-tech-light-gray/30 dark:from-tech-dark-bg dark:to-background" id="contact">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="gradient-text">Мои контакты</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            Мои контакты
           </h2>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
             Готовы начать оптимизацию вашего бизнеса? Выберите удобный способ связи

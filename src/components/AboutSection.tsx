@@ -88,10 +88,10 @@ const AboutSection = () => {
             </div>
           </div>
           
-          {/* Right side - Content */}
+          {/* Right side - Content with fully gradient heading */}
           <div className="w-full lg:w-2/3">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Обо <span className="gradient-text">мне</span>
+              <span className="gradient-text">Обо мне</span>
             </h2>
             
             <p className="text-lg text-foreground/80 mb-6">
@@ -121,10 +121,10 @@ const AboutSection = () => {
           </div>
         </div>
         
-        {/* Experience Section */}
+        {/* Experience Section with black heading */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            Профессиональный <span className="gradient-text">опыт</span>
+          <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
+            Профессиональный опыт
           </h2>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

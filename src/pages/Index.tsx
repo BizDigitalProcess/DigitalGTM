@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -44,6 +43,8 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         <PortfolioSection />
+        
+        {/* Services section with updated heading color */}
         <ServicesSection />
         <MetricsSection />
         
@@ -96,7 +97,7 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Contact section based on screenshot */}
+        {/* Contact section */}
         <ContactSection />
       </main>
       <Footer />

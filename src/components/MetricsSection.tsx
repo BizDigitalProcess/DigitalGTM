@@ -57,8 +57,8 @@ const MetricsSection = () => {
     <section className="py-16 md:py-24 bg-gradient-to-b from-white via-tech-light-gray/20 to-white dark:from-tech-dark-bg dark:to-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="gradient-text">Измеримые результаты</span> <span className="gradient-text">автоматизации</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+            Измеримые результаты автоматизации
           </h2>
           <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
             Внедряем в ваш бизнес системы, которые экономят до 80% времени на рутинных задачах и увеличивают чистую прибыль на 30-45% уже в первые месяцы
@@ -109,7 +109,7 @@ const MetricsSection = () => {
           </div>
         </div>
         
-        {/* Comparison table from the image */}
+        {/* Comparison table with cost comparison */}
         <div className="tech-card p-8 mb-16 backdrop-blur-sm bg-white/5 dark:bg-black/10 border border-white/10 shadow-lg">
           <h3 className="text-2xl font-bold text-center mb-8 gradient-text">Сравнение с традиционными подходами</h3>
           
@@ -122,15 +122,15 @@ const MetricsSection = () => {
             </div>
             
             <div className="p-4 bg-white/10 dark:bg-black/20 rounded-lg">
-              <h4 className="text-lg font-medium mb-3 text-center">Запуск первой версии</h4>
+              <h4 className="text-lg font-medium mb-3 text-center">Затраты на персонал</h4>
               <div className="grid grid-cols-2 gap-2">
                 <div className="bg-tech-purple/20 p-2 rounded-lg text-center">
-                  <p className="text-xs text-foreground/80 mb-1">С автоматизацией</p>
-                  <p className="text-tech-purple font-bold">2-4 недели</p>
+                  <p className="text-xs text-foreground/80 mb-1">AI-решение</p>
+                  <p className="text-tech-purple font-bold">от 30 000 ₽</p>
                 </div>
                 <div className="bg-gray-200 dark:bg-gray-700 p-2 rounded-lg text-center">
-                  <p className="text-xs text-foreground/80 mb-1">Без автоматизации</p>
-                  <p className="font-bold">8-12 недель</p>
+                  <p className="text-xs text-foreground/80 mb-1">Сотрудник</p>
+                  <p className="font-bold">от 120 000 ₽/мес</p>
                 </div>
               </div>
             </div>
@@ -157,7 +157,7 @@ const MetricsSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-12">
           <div>
-            <h3 className="text-2xl font-bold mb-6 gradient-text">Часто задаваемые вопросы</h3>
+            <h3 className="text-2xl font-bold mb-6 text-foreground">Часто задаваемые вопросы</h3>
             <Accordion type="single" collapsible className="w-full">
               {faqData.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
