@@ -58,43 +58,106 @@ const MetricsSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="gradient-text">Измеримые результаты</span> автоматизации
+            <span className="gradient-text">Измеримые результаты</span> <span className="gradient-text">автоматизации</span>
           </h2>
           <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
             Внедряем в ваш бизнес системы, которые экономят до 80% времени на рутинных задачах и увеличивают чистую прибыль на 30-45% уже в первые месяцы
           </p>
         </div>
         
+        {/* Key Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          <MetricCard
-            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-tech-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
-            title="Экономия времени"
-            value="80%"
-            description="Сокращение времени на выполнение рутинных операций за счет их автоматизации"
-          />
-          <MetricCard
-            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-tech-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>}
-            title="Снижение затрат"
-            value="60%"
-            description="Уменьшение операционных расходов на обработку данных и управление бизнес-процессами"
-          />
-          <MetricCard
-            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-tech-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>}
-            title="Рост производительности"
-            value="3-5x"
-            description="Увеличение скорости выполнения стандартных задач и общей эффективности работы"
-          />
-          <MetricCard
-            icon={<svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-tech-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>}
-            title="Точность данных"
-            value="99.9%"
-            description="Исключение человеческого фактора и повышение точности во всех операциях"
-          />
+          <div className="tech-card p-8 text-center backdrop-blur-sm bg-white/5 dark:bg-black/10 border border-white/10 shadow-lg">
+            <div className="flex justify-center mb-4">
+              <svg className="w-12 h-12 text-tech-purple" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 20L13 4M13 4L7 10M13 4L19 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <h3 className="text-4xl font-bold text-tech-purple mb-2">3-7x</h3>
+            <p className="text-sm text-foreground/70">рост производительности после внедрения автоматизации</p>
+          </div>
+          
+          <div className="tech-card p-8 text-center backdrop-blur-sm bg-white/5 dark:bg-black/10 border border-white/10 shadow-lg">
+            <div className="flex justify-center mb-4">
+              <svg className="w-12 h-12 text-tech-purple" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                <path d="M12 6L12 12L16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <h3 className="text-4xl font-bold text-tech-purple mb-2">80%</h3>
+            <p className="text-sm text-foreground/70">экономия времени на рутинных операциях</p>
+          </div>
+          
+          <div className="tech-card p-8 text-center backdrop-blur-sm bg-white/5 dark:bg-black/10 border border-white/10 shadow-lg">
+            <div className="flex justify-center mb-4">
+              <svg className="w-12 h-12 text-tech-purple" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <h3 className="text-4xl font-bold text-tech-purple mb-2">300%</h3>
+            <p className="text-sm text-foreground/70">средний ROI проектов автоматизации</p>
+          </div>
+          
+          <div className="tech-card p-8 text-center backdrop-blur-sm bg-white/5 dark:bg-black/10 border border-white/10 shadow-lg">
+            <div className="flex justify-center mb-4">
+              <svg className="w-12 h-12 text-tech-purple" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12L9 16L19 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <h3 className="text-4xl font-bold text-tech-purple mb-2">99%</h3>
+            <p className="text-sm text-foreground/70">точность исполнения автоматизированных процессов</p>
+          </div>
+        </div>
+        
+        {/* Comparison table from the image */}
+        <div className="tech-card p-8 mb-16 backdrop-blur-sm bg-white/5 dark:bg-black/10 border border-white/10 shadow-lg">
+          <h3 className="text-2xl font-bold text-center mb-8 gradient-text">Сравнение с традиционными подходами</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-4 bg-white/10 dark:bg-black/20 rounded-lg">
+              <h4 className="text-lg font-medium mb-3 text-center">Срок окупаемости</h4>
+              <div className="bg-tech-purple/20 p-4 rounded-lg text-center">
+                <p className="text-tech-purple font-bold">от 2 недель до 3 месяцев</p>
+              </div>
+            </div>
+            
+            <div className="p-4 bg-white/10 dark:bg-black/20 rounded-lg">
+              <h4 className="text-lg font-medium mb-3 text-center">Запуск первой версии</h4>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-tech-purple/20 p-2 rounded-lg text-center">
+                  <p className="text-xs text-foreground/80 mb-1">С автоматизацией</p>
+                  <p className="text-tech-purple font-bold">2-4 недели</p>
+                </div>
+                <div className="bg-gray-200 dark:bg-gray-700 p-2 rounded-lg text-center">
+                  <p className="text-xs text-foreground/80 mb-1">Без автоматизации</p>
+                  <p className="font-bold">8-12 недель</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="p-4 bg-white/10 dark:bg-black/20 rounded-lg">
+              <h4 className="text-lg font-medium mb-3 text-center">Снижение операционных затрат</h4>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="bg-tech-purple/20 p-2 rounded-lg text-center">
+                  <p className="text-xs text-foreground/80 mb-1">С автоматизацией</p>
+                  <p className="text-tech-purple font-bold">45-60%</p>
+                </div>
+                <div className="bg-gray-200 dark:bg-gray-700 p-2 rounded-lg text-center">
+                  <p className="text-xs text-foreground/80 mb-1">Без автоматизации</p>
+                  <p className="font-bold">20-35%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <p className="text-center text-sm text-foreground/60 mt-6">
+            Результаты могут отличаться в зависимости от сложности процессов, масштаба бизнеса и уровня текущей автоматизации
+          </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mt-12">
           <div>
-            <h3 className="text-2xl font-bold mb-6">Часто задаваемые вопросы</h3>
+            <h3 className="text-2xl font-bold mb-6 gradient-text">Часто задаваемые вопросы</h3>
             <Accordion type="single" collapsible className="w-full">
               {faqData.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
@@ -110,7 +173,7 @@ const MetricsSection = () => {
           </div>
           
           <div className="tech-card p-6 bg-gradient-to-br from-tech-purple/20 to-tech-orange/10">
-            <h3 className="text-2xl font-bold mb-6">Гарантированный ROI</h3>
+            <h3 className="text-2xl font-bold mb-6 gradient-text">Гарантированный ROI</h3>
             <ul className="space-y-4 mb-6">
               <li className="flex items-start">
                 <span className="mr-2 mt-1 text-green-500"><Check size={20} /></span>

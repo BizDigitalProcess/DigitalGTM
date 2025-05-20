@@ -63,10 +63,10 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="gradient-text">Услуги</span> по автоматизации и оптимизации
+            <span className="gradient-text">Услуги</span> <span className="gradient-text">по автоматизации и оптимизации</span>
           </h2>
           <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
-            Конкретные финансовые результаты для вашего бизнеса с измеримым ROI и гарантией окупаемости от 2 недель до 3 месяцев
+            Конкретные финансовые результаты для вашего бизнеса с измеримым ROI и быстрой окупаемостью от 2 недель до 3 месяцев
           </p>
         </div>
         

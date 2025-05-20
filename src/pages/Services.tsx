@@ -87,7 +87,8 @@ const Services = () => {
         ],
         bonuses: [
           "Интеграция с Avito (экономия 2 999 руб.)",
-          "Кастомизация сценариев без дополнительной оплаты"
+          "Кастомизация сценариев без дополнительной оплаты",
+          "Настройка наиболее частых сценариев взаимодействия"
         ],
         popular: false
       },
@@ -146,9 +147,8 @@ const Services = () => {
         description: "Стандартный тариф",
         features: [
           "Разработка базовой GTM стратегии",
-          "Настройка Яндекс директ по тарифу Mini+Ретаргетинг+РСЯ+таргетинг",
-          "Настройка GA на лендинг",
           "Создание воронки продаж",
+          "Лендинг по ведущим товарам\\услугам",
           "Базовая аналитика с ежемесячными отчетами"
         ],
         bonuses: [],
@@ -161,7 +161,7 @@ const Services = () => {
         features: [
           "Консультация по GTM стратегии",
           "Разработка плана действий",
-          "Настройка 1-2 каналов лидогенерации"
+          "Настройка 1 канала лидогенерации"
         ],
         bonuses: [],
         popular: false
@@ -257,36 +257,36 @@ const Services = () => {
               </p>
             </div>
 
-            {/* New tabs implementation */}
+            {/* Completely redesigned tab system */}
             <div className="max-w-5xl mx-auto mb-12">
-              <div className="flex flex-wrap justify-center gap-2 md:gap-4 overflow-x-auto">
+              <div className="bg-gray-100 dark:bg-tech-dark-bg/60 rounded-lg p-2 flex flex-wrap justify-center overflow-x-auto">
                 <button 
                   onClick={() => setActiveTab('development')}
-                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'development' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'development' ? 'bg-tech-purple text-white' : 'hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
                 >
                   Разработка ПО и автоматизация
                 </button>
                 <button 
                   onClick={() => setActiveTab('chatbots')}
-                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'chatbots' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'chatbots' ? 'bg-tech-purple text-white' : 'hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
                 >
                   Разработка чат-ботов
                 </button>
                 <button 
                   onClick={() => setActiveTab('gtm')}
-                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'gtm' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'gtm' ? 'bg-tech-purple text-white' : 'hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
                 >
                   Go-To-Market инженерия
                 </button>
                 <button 
                   onClick={() => setActiveTab('outstaff')}
-                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'outstaff' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'outstaff' ? 'bg-tech-purple text-white' : 'hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
                 >
                   Аутстафф ИТ специалиста
                 </button>
                 <button 
                   onClick={() => setActiveTab('additional')}
-                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'additional' ? 'bg-tech-purple text-white' : 'bg-gray-100 dark:bg-tech-dark-bg/60 hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${activeTab === 'additional' ? 'bg-tech-purple text-white' : 'hover:bg-gray-200 dark:hover:bg-tech-dark-bg/80'}`}
                 >
                   Дополнительные услуги
                 </button>
@@ -297,7 +297,12 @@ const Services = () => {
             <div className="max-w-5xl mx-auto">
               {activeTab !== 'additional' ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {pricingTiers[activeTab]?.map((tier, index) => (
+                  {/* Sorting tariffs from maximum to minimum */}
+                  {pricingTiers[activeTab]?.slice().sort((a, b) => {
+                    // Put premium first, then standard, then basic
+                    const order = { "Премиум тариф": 0, "Стандартный тариф": 1, "Базовый тариф": 2 };
+                    return order[a.description] - order[b.description];
+                  }).map((tier, index) => (
                     <Card key={index} className={`relative overflow-hidden ${tier.popular ? 'border-tech-purple shadow-lg' : ''}`}>
                       {tier.popular && (
                         <div className="absolute top-0 right-0 bg-tech-purple text-white px-3 py-1 text-sm font-medium">
@@ -307,6 +312,9 @@ const Services = () => {
                       <CardHeader className="pb-2">
                         <CardTitle>{tier.name}</CardTitle>
                         <CardDescription className="mt-2">{tier.description}</CardDescription>
+                        <div className="mt-4 p-3 bg-tech-purple/10 rounded-lg text-center">
+                          <span className="text-2xl font-bold text-tech-purple">{tier.price}</span>
+                        </div>
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-5">
@@ -322,7 +330,7 @@ const Services = () => {
                             </ul>
                           </div>
                           
-                          {tier.bonuses.length > 0 && (
+                          {tier.description === "Премиум тариф" && tier.bonuses.length > 0 && (
                             <div>
                               <h4 className="text-sm font-medium mb-3 text-foreground">Бонусы:</h4>
                               <ul className="space-y-3">
@@ -335,10 +343,6 @@ const Services = () => {
                               </ul>
                             </div>
                           )}
-                          
-                          <div className="mt-4 p-3 bg-tech-purple/10 rounded-lg text-center">
-                            <span className="text-2xl font-bold text-tech-purple">{tier.price}</span>
-                          </div>
                           
                           <div className="flex flex-col gap-3 pt-4">
                             <Button 
