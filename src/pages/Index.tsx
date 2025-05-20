@@ -51,8 +51,8 @@ const Index = () => {
         <section className="py-16 md:py-24 bg-gradient-to-br from-tech-light-gray/30 to-white dark:from-tech-dark-bg/50 dark:to-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                <span className="gradient-text">Обо мне</span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                Обо мне
               </h2>
             </div>
             

@@ -65,8 +65,8 @@ const Portfolio = () => {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center mb-16">
-              <h2 className="text-3xl font-bold mb-8">
-                <span className="gradient-text">Портфолио</span> проектов
+              <h2 className="text-3xl font-bold mb-8 gradient-text">
+                Портфолио проектов
               </h2>
               <p className="text-lg text-foreground/80">
                 Мы с гордостью показываем результаты нашей работы: каждый проект в портфолио — это история успеха бизнеса, который стал эффективнее благодаря автоматизации
