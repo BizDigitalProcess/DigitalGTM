@@ -58,25 +58,6 @@ const Index = () => {
             </div>
             
             <ServicesSection />
-            
-            {/* Payment model information */}
-            <div className="mt-16 p-6 bg-tech-purple/5 rounded-lg">
-              <h3 className="text-2xl font-bold mb-4">Модель оплаты 50/30/20</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-4 bg-white rounded-lg shadow-sm">
-                  <h4 className="text-lg font-semibold mb-2">Предоплата 50%</h4>
-                  <p className="text-foreground/80">Мотивирует нас полностью погрузиться в проект и создать максимальную ценность для вашего бизнеса.</p>
-                </div>
-                <div className="p-4 bg-white rounded-lg shadow-sm">
-                  <h4 className="text-lg font-semibold mb-2">Промежуточная оплата 30%</h4>
-                  <p className="text-foreground/80">После демонстрации первых измеримых результатов и доработок.</p>
-                </div>
-                <div className="p-4 bg-white rounded-lg shadow-sm">
-                  <h4 className="text-lg font-semibold mb-2">Финальная оплата 20%</h4>
-                  <p className="text-foreground/80">После полной реализации проекта и подтверждения достижения согласованных метрик.</p>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
         

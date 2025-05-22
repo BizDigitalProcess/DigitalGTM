@@ -48,6 +48,11 @@ const PortfolioSection = () => {
             >
               <CardContent className="p-6">
                 <h3 className="font-semibold text-xl mb-2">{caseItem.title}</h3>
+                {caseItem.niche && (
+                  <Badge className="mb-3 bg-tech-orange text-white">
+                    {caseItem.niche}
+                  </Badge>
+                )}
                 <p className="text-foreground/70 text-sm mb-4">{caseItem.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">

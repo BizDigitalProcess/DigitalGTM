@@ -13,14 +13,14 @@ const HeroSection = () => {
       <div className="absolute bottom-10 left-0 w-64 h-64 bg-tech-orange/10 rounded-full blur-3xl -z-10" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Small title moved above the offer */}
-        <div className="mb-8 text-center">
-          <p className="text-xs md:text-sm text-foreground/70 tracking-wider">Автоматизация бизнес-процессов с помощью AI-технологий</p>
-        </div>
-
         <div className="flex flex-col lg:flex-row items-center lg:space-x-16">
           {/* Left side - Text content */}
           <div className="w-full mb-10 lg:mb-0">
+            {/* Small title moved above the offer */}
+            <div className="mb-8">
+              <p className="text-xs md:text-sm text-foreground/70 tracking-wider">Автоматизация бизнес-процессов с помощью AI-технологий</p>
+            </div>
+            
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               <span className="text-foreground">Сэкономим вам </span>
               <span className="text-tech-purple">80% времени</span>
