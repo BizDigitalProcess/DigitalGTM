@@ -49,11 +49,6 @@ const HeroSection = () => {
           </div>
         </div>
         
-        {/* Floating badge moved above stats */}
-        <div className="bg-tech-orange text-white py-2 px-4 rounded-lg shadow-lg w-fit mx-auto mb-10">
-          <p className="font-semibold">Успей записаться на консультацию</p>
-        </div>
-        
         {/* Stats counter - horizontal below buttons */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
           <div className="tech-card p-4">

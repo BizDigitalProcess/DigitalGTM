@@ -59,51 +59,38 @@ const ServicesSection = () => {
   };
   
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-tech-light-gray/30 dark:from-tech-dark-bg dark:to-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="gradient-text">Услуги</span> <span className="gradient-text">по автоматизации и оптимизации</span>
-          </h2>
-          <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
-            Конкретные финансовые результаты для вашего бизнеса с измеримым ROI и быстрой окупаемостью от 2 недель до 3 месяцев
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service, index) => (
+        <div 
+          key={index} 
+          className="tech-card p-6 flex flex-col h-full group hover:-translate-y-1 transition-all duration-300"
+        >
+          <div className="mb-4 p-3 bg-tech-purple/10 rounded-lg inline-block">
+            {service.icon}
+          </div>
+          <h3 className="text-xl font-semibold mb-3 group-hover:text-tech-purple transition-colors duration-300">
+            {service.title}
+          </h3>
+          <p className="text-foreground/70 flex-grow mb-4">
+            {service.description}
           </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              className="tech-card p-6 flex flex-col h-full group hover:-translate-y-1 transition-all duration-300"
+          <div className="flex flex-col gap-2 mt-auto">
+            <Button 
+              className="btn-primary"
+              onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}
             >
-              <div className="mb-4 p-3 bg-tech-purple/10 rounded-lg inline-block">
-                {service.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-tech-purple transition-colors duration-300">
-                {service.title}
-              </h3>
-              <p className="text-foreground/70 flex-grow mb-4">
-                {service.description}
-              </p>
-              <div className="flex flex-col gap-2 mt-auto">
-                <Button 
-                  className="btn-primary"
-                  onClick={() => window.open('https://t.me/Asya_CryF1shHelper_bot', '_blank')}
-                >
-                  Записаться на консультацию
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="text-tech-purple hover:text-tech-dark-purple hover:bg-tech-purple/10"
-                  onClick={() => openServiceDetails(service)}
-                >
-                  Подробнее
-                </Button>
-              </div>
-            </div>
-          ))}
+              Записаться на консультацию
+            </Button>
+            <Button 
+              variant="outline" 
+              className="text-tech-purple hover:text-tech-dark-purple hover:bg-tech-purple/10"
+              onClick={() => openServiceDetails(service)}
+            >
+              Подробнее
+            </Button>
+          </div>
         </div>
-      </div>
+      ))}
       
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="max-w-2xl sm:max-w-3xl">
@@ -124,8 +111,12 @@ const ServicesSection = () => {
                 <p className="text-lg leading-relaxed">{selectedService.details}</p>
                 
                 <div className="mt-6 p-4 bg-tech-purple/10 rounded-lg">
-                  <h4 className="font-semibold text-lg mb-2">Конкретный финансовый результат:</h4>
+                  <h4 className="font-semibold text-lg mb-2">Ожидаемые результаты:</h4>
                   <p className="text-tech-purple font-medium">{selectedService.roi}</p>
+                  <p className="mt-2 text-sm text-foreground/70">
+                    Хотя я не могу гарантировать конкретные цифры ROI для вашего бизнеса, я обеспечиваю качественное внедрение в установленные сроки. 
+                    Вы получите прозрачную отчетность и четкие метрики эффективности для отслеживания результатов.
+                  </p>
                 </div>
                 
                 <div className="mt-6">
@@ -138,7 +129,7 @@ const ServicesSection = () => {
           )}
         </DialogContent>
       </Dialog>
-    </section>
+    </div>
   );
 };
 
