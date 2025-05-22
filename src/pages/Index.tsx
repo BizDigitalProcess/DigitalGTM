@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -44,9 +45,132 @@ const Index = () => {
         <HeroSection />
         <PortfolioSection />
         
-        {/* Services section with updated heading color */}
-        <ServicesSection />
-        <MetricsSection />
+        {/* Services section with black heading */}
+        <section className="py-16 md:py-24 bg-gradient-to-br from-tech-light-gray/30 to-white dark:from-tech-dark-bg/50 dark:to-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                Услуги по автоматизации и оптимизации
+              </h2>
+              <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+                Внедряем интеллектуальные решения, которые качественно трансформируют бизнес-процессы. Каждый проект сопровождается четкими метриками эффективности и прозрачной отчетностью.
+              </p>
+            </div>
+            
+            <ServicesSection />
+            
+            {/* Payment model information */}
+            <div className="mt-16 p-6 bg-tech-purple/5 rounded-lg">
+              <h3 className="text-2xl font-bold mb-4">Модель оплаты 50/30/20</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="p-4 bg-white rounded-lg shadow-sm">
+                  <h4 className="text-lg font-semibold mb-2">Предоплата 50%</h4>
+                  <p className="text-foreground/80">Мотивирует нас полностью погрузиться в проект и создать максимальную ценность для вашего бизнеса.</p>
+                </div>
+                <div className="p-4 bg-white rounded-lg shadow-sm">
+                  <h4 className="text-lg font-semibold mb-2">Промежуточная оплата 30%</h4>
+                  <p className="text-foreground/80">После демонстрации первых измеримых результатов и доработок.</p>
+                </div>
+                <div className="p-4 bg-white rounded-lg shadow-sm">
+                  <h4 className="text-lg font-semibold mb-2">Финальная оплата 20%</h4>
+                  <p className="text-foreground/80">После полной реализации проекта и подтверждения достижения согласованных метрик.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Metrics section with black heading */}
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                Измеримые результаты автоматизации
+              </h2>
+            </div>
+            
+            {/* Salary vs AI Agent comparison */}
+            <div className="mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-white dark:bg-tech-dark-bg/50 p-6 rounded-lg shadow-sm">
+                  <h3 className="text-xl font-bold mb-4 text-tech-purple">Человек-сотрудник</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-red-100 text-red-500">–</span>
+                      <span>Зарплата: 80,000 – 150,000 ₽/мес.</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-red-100 text-red-500">–</span>
+                      <span>Налоги и отчисления: +30%</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-red-100 text-red-500">–</span>
+                      <span>Рабочее место: 10,000 – 30,000 ₽/мес.</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-red-100 text-red-500">–</span>
+                      <span>Обработка 300-500 операций/день</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-red-100 text-red-500">–</span>
+                      <span>Требуется обучение и контроль</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-red-100 text-red-500">–</span>
+                      <span>Работает 8 часов/5 дней в неделю</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-red-100 text-red-500">–</span>
+                      <span>Может уйти в любой момент</span>
+                    </li>
+                  </ul>
+                  <div className="mt-6 p-4 bg-gray-100 dark:bg-tech-dark-bg/70 rounded">
+                    <p className="font-bold text-lg">Итого: от 114,000 ₽/мес.</p>
+                  </div>
+                </div>
+                
+                <div className="bg-white dark:bg-tech-dark-bg/50 p-6 rounded-lg shadow-sm border border-tech-purple">
+                  <h3 className="text-xl font-bold mb-4 text-tech-orange">AI-решение</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-green-100 text-green-500">+</span>
+                      <span>Стоимость: 30,000 – 60,000 ₽/мес.</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-green-100 text-green-500">+</span>
+                      <span>Без дополнительных отчислений</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-green-100 text-green-500">+</span>
+                      <span>Не требует физического места</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-green-100 text-green-500">+</span>
+                      <span>Обработка 3000-10000+ операций/день</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-green-100 text-green-500">+</span>
+                      <span>Настраивается один раз</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-green-100 text-green-500">+</span>
+                      <span>Работает 24/7/365</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-green-100 text-green-500">+</span>
+                      <span>Масштабируется по необходимости</span>
+                    </li>
+                  </ul>
+                  <div className="mt-6 p-4 bg-tech-purple/10 dark:bg-tech-purple/20 rounded">
+                    <p className="font-bold text-lg">Экономия: от 54,000 ₽/мес.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <MetricsSection />
+          </div>
+        </section>
         
         {/* About me section */}
         <section className="py-16 md:py-24 bg-gradient-to-br from-tech-light-gray/30 to-white dark:from-tech-dark-bg/50 dark:to-background">
@@ -97,8 +221,21 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Contact section */}
-        <ContactSection />
+        {/* Contact section with black heading */}
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                Мои контакты
+              </h2>
+              <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
+                Готов обсудить ваш проект и предложить оптимальное решение. Свяжитесь со мной любым удобным способом.
+              </p>
+            </div>
+            
+            <ContactSection />
+          </div>
+        </section>
       </main>
       <Footer />
     </div>

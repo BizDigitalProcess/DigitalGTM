@@ -16,9 +16,9 @@ const PortfolioSection = () => {
   
   // Use the first 3 cases for the homepage
   const featuredCases = [
-    portfolioCases.find(item => item.title.includes("Автоматизация подбора материалов")),
+    portfolioCases.find(item => item.title.includes("Интеллектуальная автоматизация закупок")),
     portfolioCases.find(item => item.title.includes("AI агент для онбординга")),
-    portfolioCases.find(item => item.title.includes("GTM Engineering"))
+    portfolioCases.find(item => item.title.includes("Автоматизация контент-маркетинга"))
   ].filter(Boolean);
   
   const homepageCases = featuredCases.length === 3 ? featuredCases : portfolioCases.slice(0, 3);
@@ -31,7 +31,7 @@ const PortfolioSection = () => {
     <section id="portfolio" className="py-16 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-tech-purple to-tech-orange bg-clip-text text-transparent">
             Портфолио проектов
           </h2>
           <p className="text-lg text-foreground/80 max-w-3xl mx-auto">
@@ -113,6 +113,31 @@ const PortfolioSection = () => {
               </DialogHeader>
               
               <div className="mt-6">
+                {selectedCase.niche && (
+                  <>
+                    <h4 className="text-lg font-medium mb-3">Ниша клиента</h4>
+                    <p className="mb-4">{selectedCase.niche}</p>
+                  </>
+                )}
+                
+                {selectedCase.systemDescription && (
+                  <>
+                    <h4 className="text-lg font-medium mb-3">Описание системы</h4>
+                    <p className="mb-4">{selectedCase.systemDescription}</p>
+                    
+                    {selectedCase.keyModules && (
+                      <>
+                        <h5 className="text-md font-medium mb-2">Ключевые модули:</h5>
+                        <ul className="list-disc pl-5 mb-4 space-y-1">
+                          {selectedCase.keyModules.map((module, i) => (
+                            <li key={i}>{module}</li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+                  </>
+                )}
+                
                 {selectedCase.process && (
                   <>
                     <h4 className="text-lg font-medium mb-3">Этапы проекта</h4>

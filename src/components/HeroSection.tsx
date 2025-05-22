@@ -50,7 +50,7 @@ const HeroSection = () => {
         </div>
         
         {/* Floating badge moved above stats */}
-        <div className="bg-tech-orange text-white py-2 px-4 rounded-lg shadow-lg w-fit mx-auto mb-6">
+        <div className="bg-tech-orange text-white py-2 px-4 rounded-lg shadow-lg w-fit mx-auto mb-10">
           <p className="font-semibold">Успей записаться на консультацию</p>
         </div>
         
