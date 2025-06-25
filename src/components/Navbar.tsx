@@ -81,7 +81,7 @@ const Navbar = () => {
                     onClick={() => window.open('https://digitalgtm.online/', '_blank')}
                   >
                     <ExternalLink size={16} className="mr-2" />
-                    Мой кабинет
+                    SaaS Дашборд
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="bottom" className="max-w-xs">
@@ -143,7 +143,7 @@ const Navbar = () => {
                 }}
               >
                 <ExternalLink size={16} className="mr-2" />
-                Мой кабинет
+                SaaS Дашборд
               </Button>
               
               <Button 
