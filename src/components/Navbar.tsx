@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +24,15 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    // Show popover after 2 seconds when page loads
+    const timer = setTimeout(() => {
+      setShowPopover(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const navItems = [
@@ -73,21 +84,44 @@ const Navbar = () => {
             </nav>
             
             <div className="hidden md:flex items-center space-x-4">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button 
-                    variant="outline"
-                    className="btn-secondary"
-                    onClick={() => window.open('https://digitalgtm.online/', '_blank')}
-                  >
-                    <ExternalLink size={16} className="mr-2" />
-                    SaaS Дашборд
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent side="bottom" className="max-w-xs">
-                  <p>Отслеживайте эффективность за своими инструментами с помощью онлайн доски и личного кабинета!</p>
-                </TooltipContent>
-              </Tooltip>
+              <Popover open={showPopover} onOpenChange={setShowPopover}>
+                <PopoverTrigger asChild>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button 
+                        variant="outline"
+                        className="btn-secondary"
+                        onClick={() => window.open('https://digitalgtm.online/', '_blank')}
+                      >
+                        <ExternalLink size={16} className="mr-2" />
+                        Мой кабинет
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="max-w-xs">
+                      <p>Отслеживайте эффективность за своими инструментами с помощью онлайн доски и личного кабинета!</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </PopoverTrigger>
+                <PopoverContent 
+                  side="bottom" 
+                  className="w-80 p-4 bg-tech-purple text-white border-tech-purple shadow-lg"
+                  sideOffset={5}
+                >
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">
+                        Отслеживайте эффективность за своими инструментами с помощью онлайн доски и личного кабинета!
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setShowPopover(false)}
+                      className="ml-2 text-white/80 hover:text-white transition-colors"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                </PopoverContent>
+              </Popover>
               
               <Button 
                 className="btn-primary"
@@ -143,7 +177,7 @@ const Navbar = () => {
                 }}
               >
                 <ExternalLink size={16} className="mr-2" />
-                SaaS Дашборд
+                Мой кабинет
               </Button>
               
               <Button 
